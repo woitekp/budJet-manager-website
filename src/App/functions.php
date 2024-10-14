@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-function dump_and_die(mixed $var) {
+function dump_and_die(mixed $var)
+{
   echo "<pre>";
   var_dump ($var);
   echo "</pre>";
