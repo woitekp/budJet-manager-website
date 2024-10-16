@@ -1,0 +1,262 @@
+@font-face {
+  font-family: logoFont;
+  src: url(Boldenvandemo-K7dZZ.ttf);
+}
+
+
+html {
+overflow-y: scroll;
+}
+
+body {
+/* flex with height: 100vh makes footer staying at the bottom of the page and not overlapping the page */
+height: 100vh;
+display: flex; 
+flex-direction: column;
+background-color: #dff4df;
+font-family: 'Open Sans', sans-serif;
+font-size: 17px;
+text-align: center;
+}
+
+
+header {
+padding-top: 20px;
+}
+
+header .logo {
+font-family: logoFont;
+color: #71ca71;
+}
+
+header .logo:hover {
+text-decoration: none;
+}
+
+
+.menu
+{
+margin-top: 20px;
+background-color: #f3eea6;
+padding: 12px;
+font-size: 1.6rem;
+}
+
+.menu > li
+{
+display: inline-block;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+.menu a
+{
+color: #41be41;
+}
+
+.menu a.selected-option {
+  font-weight: bold;
+  color: #299c29;
+}
+
+.menu a:hover
+{
+color: #299c29;
+}
+
+
+.form {
+width: 100%;
+max-width: 330px;
+padding: 15px;
+margin: 0 auto;
+}
+
+.form .form-control:focus {
+z-index: 2;
+border: 1px solid #299c29;
+box-shadow: none;
+}
+
+.form-top-elem {
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+margin-bottom: 0.8px;
+}
+
+
+.form-middle-elem {
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+}
+
+.form-bottom-elem {
+margin-bottom: 10px;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+
+
+.grid-container {
+display: grid;
+grid-template-areas: "button1 button2";
+grid-template-rows: 1fr 1fr;
+grid-template-columns: 1fr 1fr;
+}
+
+
+button {
+box-shadow: none !important;
+}
+
+button.confirm {
+background-color: #71ca71 !important;
+border: 2px solid #71ca71 !important;
+}
+
+button.confirm:hover {
+background-color: #299c29 !important;
+border: 2px solid #299c29 !important;
+
+}
+
+button.cancel {
+background-color: #de3e51 !important;
+border: 2px solid #de3e51 !important;
+}
+
+button.cancel:hover {
+background-color: #d21414 !important;
+border: 2px solid #d21414 !important;
+}
+
+button.right {
+border-top-left-radius: 0;
+border-bottom-left-radius: 0;
+margin-left: 3px;
+}
+
+button.left {
+border-top-right-radius: 0;
+border-bottom-right-radius: 0;
+margin-right: 3px;
+}
+
+
+.login-registration-link {
+color: #71ca71;
+font-size: 1.4rem;
+}
+
+.login-registration-link:hover {
+color: #299c29;
+}
+
+
+#SelectPeriod {
+width: 200px;
+margin: auto;
+}
+
+
+table > caption {
+caption-side: top;
+color: black;
+text-align: center;
+font-size: 1.6rem;
+font-weight: bold;
+}
+
+table {
+clear: both;
+border: 2px solid #299c29;
+}
+
+table, th {
+margin: auto;
+padding: 10px;
+}
+
+th {
+font-weight: normal;
+border: 1px solid #299c29;
+}
+
+th.number {
+font-weight: bold;
+}
+
+tr.summary > th {
+font-weight: bold;
+}
+
+.text-centered {
+text-align: center;
+}
+
+.column_names > * {
+font-weight: bold;
+border: 2px solid #299c29;
+}
+
+
+.row_dark {
+background-color: #f3eea6;
+}
+
+.row_light {
+background-color: #FFF8D6;
+}
+
+
+.chart {
+display: flex;
+align-items: center;
+margin-top: 30px;
+}
+
+.pie_chart {
+height: 450px;
+width: 450px;
+border-radius: 50%;
+margin-left: auto;
+}
+
+.legend {
+height: 450px;
+width: 200px;
+margin-left: 10px;
+margin-right: 0px;
+}
+
+.legend_last_column {
+margin-right: auto;
+}
+
+.legend_item {
+display: flex;
+align-items: center;
+}
+
+.item_color {
+margin-top: 15px;
+margin-left: 5px;
+height: 12px;
+width: 12px;
+}
+
+.item_text {
+margin-left: 5px;
+height: 12px;
+width: 12px;
+white-space: nowrap;
+font-size: 1.1rem;
+}
+
+
+footer {
+padding: 10px;
+margin-top: auto; /* auto with proper body settings (see body section)makes footer staying at the bottom of the page and not overlapping the page */
+}
