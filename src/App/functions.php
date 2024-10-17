@@ -9,3 +9,8 @@ function dump_and_die(mixed $var)
   echo "</pre>";
   die(); // do not render the rest of the page
 }
+
+function escape(mixed $value): string
+{
+  return htmlspecialchars((string )$value);
+}
