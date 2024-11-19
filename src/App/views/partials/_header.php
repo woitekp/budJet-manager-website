@@ -1,17 +1,3 @@
-<?php
-
-	session_start();
-
-	if (isset($_SESSION['userIsLogged']) && $_SESSION['userIsLogged']==true)
-	{
-    // LOG OUT
-    session_destroy();
-    header("Location: login.php");
-    exit();
-	}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

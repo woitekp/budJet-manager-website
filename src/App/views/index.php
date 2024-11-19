@@ -1,5 +1,4 @@
-<?php include $this->resolve("partials/_header.php"); ?>
-
+<?php include $this->resolve("partials/_header.php");?>
   <main>
 
     <form class="form" action="login_action.php" method="post">
@@ -33,11 +32,10 @@
       <button class="confirm btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
       <hr>
-      <div>no account?<br><a href="registration.php" class="login-registration-link"><u>Quick registration</u></a></div>
+      <div>no account?<br><a href="registration" class="login-registration-link"><u>Quick registration</u></a></div>
 
     </form>
     
   </main>
-
   <?php include $this->resolve("partials/_footer.php"); ?>
   
