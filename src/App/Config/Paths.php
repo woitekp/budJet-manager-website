@@ -8,4 +8,5 @@ class Paths  // by using a class constants can be auto loaded with composer
 {
   public const VIEW = __DIR__ . "/../views";
   public const SOURCE = __DIR__ . "/../../";
+  public const ROOT = __DIR__ . "/../../../";
 }

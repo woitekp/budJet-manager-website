@@ -10,11 +10,10 @@ use App\Services\ValidatorService;
 
 class RegistrationController
 {
-  public function __construct (
+  public function __construct(
     private TemplateEngine $view,
-    private ValidatorService $validatorService)
-  {
-  }
+    private ValidatorService $validatorService
+  ) {}
 
   public function registerView()
   {

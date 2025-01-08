@@ -14,20 +14,18 @@ class Router
     $path = $this->normalizePath($path);
     $method = strtoupper($method);
 
-    foreach($this->routes as $route)
-    {
+    foreach ($this->routes as $route) {
       if (!preg_match("#^{$route['path']}$#", $path) || $route['method'] !== $method)  // ^, $ - value begins and ends (respectively) with the pattern
-      {  
+      {
         continue;
       }
 
       [$class, $function] = $route['controller'];  // destructurization
       $controllerInstance = $container ? $container->resolve($class) : new $class;
-      
+
       $action = fn() => $controllerInstance->{$function}();  // PHP attempts to resolve string value to a class method
 
-      foreach($this->middlewares as $middleware)
-      {
+      foreach ($this->middlewares as $middleware) {
         $middlewareInstance = $container ? $container->resolve($middleware) : new $middleware;
         $action = fn() => $middlewareInstance->process($action);
       }
@@ -52,11 +50,10 @@ class Router
     $this->middlewares[] = $middleware;
   }
 
-  private function normalizePath(string $path) : string 
+  private function normalizePath(string $path): string
   {
     $path = trim($path, '/');
     $path = "/{$path}/";
     return preg_replace('#[/]{2,}#', '/', $path);
   }
-
 }
