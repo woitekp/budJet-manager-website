@@ -17,38 +17,32 @@ class Container
   {
     $reflectionClass = new ReflectionClass($className);
 
-    if (!$reflectionClass->isInstantiable())
-    {
+    if (!$reflectionClass->isInstantiable()) {
       throw new ContainerException("Class {$className} is not instantiable");
     }
 
     $constructor = $reflectionClass->getConstructor();
-    if (!$constructor)
-    {
+    if (!$constructor) {
       return new $className;
     }
 
     $params = $constructor->getParameters();
 
-    if (count($params) === 0)
-    {
+    if (count($params) === 0) {
       return new $className;
     }
 
     $dependencies = [];
 
-    foreach ($params as $param)
-    {
+    foreach ($params as $param) {
       $name = $param->getName();
       $type = $param->getType();
 
-      if (!$type)
-      {
+      if (!$type) {
         throw new ContainerException("Failed to resolve {$className} - missing type hint for parameter: {$name}");
       }
 
-      if (!$type instanceof ReflectionNamedType || $type->isBuiltin())
-      {
+      if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) {
         throw new ContainerException("Failed to resolve {$className} - invalid type for parameter: {$name}");
       }
 
@@ -58,21 +52,19 @@ class Container
     return $reflectionClass->newInstanceArgs($dependencies);
   }
 
-  
+
   public function getDependency(string $className)
   {
-    if (!array_key_exists($className, $this->definitions))
-    {
+    if (!array_key_exists($className, $this->definitions)) {
       throw new ContainerException("Class {$className} does not exists in a container");
     }
 
-    if (array_key_exists($className, $this->resolved))
-    {
+    if (array_key_exists($className, $this->resolved)) {
       return $this->resolved[$className];
     }
 
     $factory = $this->definitions[$className];
-    $instance = $factory();
+    $instance = $factory($this);
 
     $this->resolved[$className] = $instance;
 
