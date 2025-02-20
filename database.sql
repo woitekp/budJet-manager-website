@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `expense` (
   `category` int(11) UNSIGNED NOT NULL,
   `payment_method` int(11) UNSIGNED NOT NULL,
   `amount` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `date` date NOT NULL,
+  `date` date NOT NULL DEFAULT CURRENT_DATE(),
   `comment` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `income` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `category` int(11) UNSIGNED NOT NULL,
   `amount` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `date` date NOT NULL,
+  `date` date NOT NULL DEFAULT CURRENT_DATE(),
   `comment` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
