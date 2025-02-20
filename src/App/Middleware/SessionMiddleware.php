@@ -9,17 +9,21 @@ use Framework\Contracts\MiddlewareInterface;
 
 class SessionMiddleware implements MiddlewareInterface
 {
-  public function process (callable $next)
+  public function process(callable $next)
   {
-    if (session_status() === PHP_SESSION_ACTIVE)
-    {
+    if (session_status() === PHP_SESSION_ACTIVE) {
       throw new SessionException("Session already active");
     }
 
-    if (headers_sent($filename, $line))
-    {
+    if (headers_sent($filename, $line)) {
       throw new SessionException("Headers already sent. Consider enabling output buffering. Data outputted from {$filename} - line: {$line}");
     }
+
+    session_set_cookie_params([
+      'secure' => $_ENV['APP_ENV'] === 'production',
+      'httponly' => true,
+      'samesite' => 'lax'
+    ]);
 
     session_start();
     $next();

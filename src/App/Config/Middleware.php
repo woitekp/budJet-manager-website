@@ -6,6 +6,8 @@ namespace App\Config;
 
 use Framework\App;
 use App\Middleware\{
+  CsrfGuardMiddleware,
+  CsrfTokenMiddleware,
   FlashMiddleware,
   SessionMiddleware,
   TemplateDataMiddleware,
@@ -15,8 +17,11 @@ use App\Middleware\{
 
 function registerMiddleware(App $app)
 {
+  // the middleware registered first gets executed last
+  $app->addMiddleware(CsrfGuardMiddleware::class);
+  $app->addMiddleware(CsrfTokenMiddleware::class);
   $app->addMiddleware(TemplateDataMiddleware::class);
   $app->addMiddleware(ValidationExceptionMiddleware::class);
   $app->addMiddleware(FlashMiddleware::class);
-  $app->addMiddleware(SessionMiddleware::Class);  // middleware registered last is executed first
+  $app->addMiddleware(SessionMiddleware::class);
 }
