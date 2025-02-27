@@ -11,7 +11,7 @@ html {
 body {
   /* flex with height: 100vh makes footer staying at the bottom of the page and not overlapping the page */
   height: 100vh;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   background-color: #dff4df;
   font-family: 'Open Sans', sans-serif;
@@ -41,7 +41,7 @@ header .logo:hover {
   font-size: 1.6rem;
 }
 
-.menu > li {
+.menu>li {
   display: inline-block;
   padding-left: 20px;
   padding-right: 20px;
@@ -57,7 +57,7 @@ header .logo:hover {
 }
 
 .menu a:hover {
-color: #299c29;
+  color: #299c29;
 }
 
 .form {
@@ -135,6 +135,7 @@ button.confirm:hover {
 button.cancel {
   background-color: #de3e51 !important;
   border: 2px solid #de3e51 !important;
+  margin-top: 10px;
 }
 
 button.cancel:hover {
@@ -171,7 +172,7 @@ button.left {
 }
 
 
-table > caption {
+table>caption {
   caption-side: top;
   color: black;
   text-align: center;
@@ -184,7 +185,8 @@ table {
   border: 2px solid #299c29;
 }
 
-table, th {
+table,
+th {
   margin: auto;
   padding: 10px;
 }
@@ -198,7 +200,7 @@ th.number {
   font-weight: bold;
 }
 
-tr.summary > th {
+tr.summary>th {
   font-weight: bold;
 }
 
@@ -206,7 +208,7 @@ tr.summary > th {
   text-align: center;
 }
 
-.column_names > * {
+.column_names>* {
   font-weight: bold;
   border: 2px solid #299c29;
 }
@@ -268,5 +270,6 @@ tr.summary > th {
 
 footer {
   padding: 10px;
-  margin-top: auto; /* auto with proper body settings (see body section)makes footer staying at the bottom of the page and not overlapping the page */
+  margin-top: auto;
+  /* auto with proper body settings (see body section)makes footer staying at the bottom of the page and not overlapping the page */
 }

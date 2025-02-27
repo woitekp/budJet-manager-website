@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `expense` (
   `user_payment_method_id` int(11) UNSIGNED NOT NULL,
   `amount` decimal(8,2) NOT NULL DEFAULT 0.00,
   `date` date NOT NULL DEFAULT CURRENT_DATE(),
-  `comment` varchar(100) NOT NULL,
+  `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   FOREIGN KEY (`user_expense_category_id`) REFERENCES `user_expense_category` (`id`),
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `income` (
   `user_income_category_id` int(11) UNSIGNED NOT NULL,
   `amount` decimal(8,2) NOT NULL DEFAULT 0.00,
   `date` date NOT NULL DEFAULT CURRENT_DATE(),
-  `comment` varchar(100) NOT NULL,
+  `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   FOREIGN KEY (`user_income_category_id`) REFERENCES `user_income_category` (`id`)
