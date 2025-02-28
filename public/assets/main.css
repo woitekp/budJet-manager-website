@@ -147,12 +147,16 @@ button.right {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   margin-left: 3px;
+  padding-left: 1px;
+  padding-right: 1px;
 }
 
 button.left {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   margin-right: 3px;
+  padding-left: 1px;
+  padding-right: 1px;
 }
 
 

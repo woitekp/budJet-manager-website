@@ -21,6 +21,16 @@ class TransactionController
 
   public function expense()
   {
-    $this->validatorService->validateTransaction($_POST);
+    $this->validatorService->validateExpense($_POST);
+  }
+
+  public function incomeView()
+  {
+    echo $this->view->render("transactions/income.php");
+  }
+
+  public function income()
+  {
+    $this->validatorService->validateIncome($_POST);
   }
 }
