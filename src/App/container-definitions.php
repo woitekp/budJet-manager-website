@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Framework\{TemplateEngine, Database, Container};
+use Framework\{Container, Database, TemplateEngine};
 use App\Config\Paths;
-use App\Services\{ValidatorService, UserService};
+use App\Services\{TransactionService, UserService, ValidatorService};
 
 return [
   TemplateEngine::class => fn() => new TemplateEngine(Paths::VIEW),  // alternatively anonymous function could be used instead of arrow function: function() {return new TemplateEngine(Paths::VIEW);}
@@ -22,5 +22,9 @@ return [
   UserService::class => function (Container $container) {
     $db = $container->getDependency(Database::class);
     return new UserService($db);
+  },
+  TransactionService::class => function (Container $container) {
+    $db = $container->getDependency(Database::class);
+    return new TransactionService($db);
   }
 ];
