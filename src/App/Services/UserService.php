@@ -33,10 +33,11 @@ class UserService
         'username' => $formData['username']
       ]
     );
-
     session_regenerate_id();
 
     $_SESSION['user'] = $this->db->id();
+
+    $this->insertDefaults();
   }
 
   public function login(array $formData)
@@ -63,5 +64,30 @@ class UserService
     unset($_SESSION['user']);
 
     session_regenerate_id();
+  }
+
+  private function insertDefaults()
+  {
+
+    $this->db->query(
+      "INSERT INTO user_income_category (user_id, name) SELECT :user_id, name FROM income_category_default",
+      [
+        'user_id' => $_SESSION['user']
+      ]
+    );
+
+    $this->db->query(
+      "INSERT INTO user_expense_category (user_id, name) SELECT :user_id, name FROM expense_category_default",
+      [
+        'user_id' => $_SESSION['user']
+      ]
+    );
+
+    $this->db->query(
+      "INSERT INTO user_payment_method (user_id, name) SELECT :user_id, name FROM payment_method_default",
+      [
+        'user_id' => $_SESSION['user']
+      ]
+    );
   }
 }

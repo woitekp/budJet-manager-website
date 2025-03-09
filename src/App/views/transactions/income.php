@@ -1,3 +1,7 @@
+<?php
+$categories = $categories ?? array();
+?>
+
 <?php include $this->resolve("partials/_header.php"); ?>
 <?php include $this->resolve("partials/_menu.php"); ?>
 
@@ -13,11 +17,15 @@
     <label for="inputDate" class="sr-only">Date</label>
     <input name="date" type="date" class="form-control form-middle-elem text-centered" value=<?php echo date("Y-m-d", time()) ?> required="">
 
-    <!-- <label for="inputCategory" class="sr-only">Category</label>
+    <label for="inputCategory" class="sr-only">Category</label>
     <select name="category" type="text" class="form-control form-middle-elem text-centered" placeholder="Select category" required="">
       <option value="" selected>Select category</option>
-
-    </select> -->
+      <?php
+      foreach ($categories as $item) {
+        echo "<option>" . $item . "</option>";
+      }
+      ?>
+    </select>
 
     <label for="inputComment" class="sr-only">Comment</label>
     <input name="comment" type="text" class="form-control form-bottom-elem text-centered" placeholder="Comment (optional)" autofocus="">

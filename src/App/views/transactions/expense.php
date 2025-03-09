@@ -1,3 +1,9 @@
+<?php
+$categories = $categories ?? array();
+$paymentMethods = $paymentMethods ?? array();
+?>
+
+
 <?php include $this->resolve("partials/_header.php"); ?>
 <?php include $this->resolve("partials/_menu.php"); ?>
 
@@ -13,16 +19,25 @@
     <label for="inputDate" class="sr-only">Date</label>
     <input name="date" type="date" class="form-control form-middle-elem text-centered" value=<?php echo date("Y-m-d", time()) ?> required="">
 
-    <!-- <label for="inputCategory" class="sr-only">Category</label>
+    <label for="inputCategory" class="sr-only">Category</label>
     <select name="category" type="text" class="form-control form-middle-elem text-centered" placeholder="Select category" required="">
       <option value="" selected>Select category</option>
-
+      <?php
+      foreach ($categories as $item) {
+        echo "<option>" . $item . "</option>";
+      }
+      ?>
     </select>
 
     <label for="inputPayment" class="sr-only">Category</label>
     <select name="payment" type="text" class="form-control form-middle-elem text-centered" placeholder="Select payment" required="">
       <option value="" selected>Select payment method</option>
-    </select> -->
+      <?php
+      foreach ($paymentMethods as $item) {
+        echo "<option>" . $item . "</option>";
+      }
+      ?>
+    </select>
 
     <label for="inputComment" class="sr-only">Comment</label>
     <input name="comment" type="text" id="inputComment" class="form-control form-bottom-elem text-centered" placeholder="Comment (optional)" autofocus="">

@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS `user_expense_category` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  UNIQUE `unique_user_category` (`user_id`, `name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 
@@ -31,7 +32,8 @@ CREATE TABLE IF NOT EXISTS `user_payment_method` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  UNIQUE `unique_user_payment_method` (`user_id`, `name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 
@@ -56,7 +58,8 @@ CREATE TABLE IF NOT EXISTS `user_income_category` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  UNIQUE `unique_user_category` (`user_id`, `name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 
@@ -80,7 +83,23 @@ CREATE TABLE IF NOT EXISTS `expense_category_default` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
-
+INSERT IGNORE INTO `expense_category_default` (`id`, `name`) VALUES
+(1, 'Transport'),
+(2, 'Books'),
+(3, 'Food'),
+(4, 'Apartments'),
+(5, 'Telecommunication'),
+(6, 'Health'),
+(7, 'Clothes'),
+(8, 'Hygiene'),
+(9, 'Kids'),
+(10, 'Recreation'),
+(11, 'Trip'),
+(12, 'Savings'),
+(13, 'For Retirement'),
+(14, 'Debt Repayment'),
+(15, 'Gift'),
+(16, 'Another');
 
 
 CREATE TABLE IF NOT EXISTS `income_category_default` (
@@ -89,6 +108,11 @@ CREATE TABLE IF NOT EXISTS `income_category_default` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+INSERT IGNORE INTO `income_category_default` (`id`, `name`) VALUES
+(1, 'Salary'),
+(2, 'Interest'),
+(3, 'Allegro'),
+(4, 'Another');
 
 
 CREATE TABLE IF NOT EXISTS `payment_method_default` (
@@ -97,6 +121,10 @@ CREATE TABLE IF NOT EXISTS `payment_method_default` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+INSERT IGNORE INTO `payment_method_default` (`id`, `name`) VALUES
+(1, 'Cash'),
+(2, 'Debit Card'),
+(3, 'Credit Card');
 
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

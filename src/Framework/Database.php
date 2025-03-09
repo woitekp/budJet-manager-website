@@ -42,6 +42,11 @@ class Database
     return $this->statement->fetch();
   }
 
+  public function findall()
+  {
+    return $this->statement->fetchAll();
+  }
+
   public function id()
   {
     return $this->connection->lastInsertId();

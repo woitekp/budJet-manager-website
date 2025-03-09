@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use Framework\TemplateEngine;
+use Framework\{Database, TemplateEngine};
 use App\Services\{TransactionService, ValidatorService};
 
 class TransactionController
 {
   public function __construct(
+    private Database $db,
     private TemplateEngine $view,
     private TransactionService $transactionService,
     private ValidatorService $validatorService
@@ -17,7 +18,13 @@ class TransactionController
 
   public function expenseView()
   {
-    echo $this->view->render("transactions/expense.php");
+    $categories = $this->transactionService->getUserExpenseCategories();
+    $paymentMethods = $this->transactionService->getuserPaymentMethods();
+
+    echo $this->view->render("transactions/expense.php", [
+      'categories' => $categories,
+      'paymentMethods' => $paymentMethods
+    ]);
   }
 
   public function expense()
@@ -29,7 +36,11 @@ class TransactionController
 
   public function incomeView()
   {
-    echo $this->view->render("transactions/income.php");
+    $categories = $this->transactionService->getUserIncomeCategories();
+
+    echo $this->view->render("transactions/income.php", [
+      'categories' => $categories
+    ]);
   }
 
   public function income()
