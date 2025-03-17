@@ -29,7 +29,7 @@ $paymentMethods = $paymentMethods ?? array();
       ?>
     </select>
 
-    <label for="inputPayment" class="sr-only">Category</label>
+    <label for="inputPayment" class="sr-only">Payment</label>
     <select name="payment" type="text" class="form-control form-middle-elem text-centered" placeholder="Select payment" required="">
       <option value="" selected>Select payment method</option>
       <?php
@@ -39,8 +39,8 @@ $paymentMethods = $paymentMethods ?? array();
       ?>
     </select>
 
-    <label for="inputComment" class="sr-only">Comment</label>
-    <input name="comment" type="text" id="inputComment" class="form-control form-bottom-elem text-centered" placeholder="Comment (optional)" autofocus="">
+    <label for="inputDescription" class="sr-only">Description</label>
+    <input name="description" type="text" id="inputDescription" class="form-control form-bottom-elem text-centered" placeholder="Description (optional)">
 
     <div class="grid-container">
       <button name="cancel" class="cancel left btn btn-lg btn-primary btn-info" type="submit">Cancel</button>

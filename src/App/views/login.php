@@ -43,7 +43,9 @@ $email = escape($providedFormData['email'] ?? '');
     <button class="confirm btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
     <hr>
-    <div>no account?<br><a href="registration" class="login-registration-link"><u>Quick registration</u></a></div>
+    <div>
+      <h3 class="h4 mb-3 font-weight-normal">no account?</h3><a href="registration" class="login-registration-link"><u>Quick registration</u></a>
+    </div>
 
   </form>
 

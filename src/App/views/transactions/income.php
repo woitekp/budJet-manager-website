@@ -27,8 +27,8 @@ $categories = $categories ?? array();
       ?>
     </select>
 
-    <label for="inputComment" class="sr-only">Comment</label>
-    <input name="comment" type="text" class="form-control form-bottom-elem text-centered" placeholder="Comment (optional)" autofocus="">
+    <label for="inputDescription" class="sr-only">Description</label>
+    <input name="description" type="text" class="form-control form-bottom-elem text-centered" placeholder="Description (optional)">
 
     <div class="grid-container">
       <button name="cancel" class="cancel left btn btn-lg btn-primary btn-info" type="submit">Cancel</button>
