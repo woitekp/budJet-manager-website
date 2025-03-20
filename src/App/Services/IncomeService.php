@@ -10,22 +10,24 @@ class IncomeService
 {
   public function __construct(private Database $db) {}
 
-  public function getUserIncomes()
+  public function getUserIncomes(int $length, int $offset, string $searchTerm)
   {
-    $searchTerm = addcslashes($_GET['s'] ?? '', '%_');
+    $params = [
+      'user_id' => $_SESSION['user'],
+      'description' => "%{$searchTerm}%"
+    ];
 
     return $this->db->query(
       "SELECT DATE_FORMAT(income.date, '%Y-%m-%d') as date, income.amount as amount, user_income_category.name as category, income.description as description,
-        ROW_NUMBER() OVER (ORDER BY income.date, income.id) AS ordinal_number
-       FROM income
-       JOIN user_income_category
-       ON income.user_income_category_id = user_income_category.id
-       WHERE income.user_id = :user_id AND description LIKE :description
-       ORDER BY income.date DESC, income.id DESC",
-      [
-        'user_id' => $_SESSION['user'],
-        'description' => "%{$searchTerm}%"
-      ]
+        ROW_NUMBER() OVER (ORDER BY income.date, income.id) AS ordinal_number,
+      count(*) OVER() AS records_count
+      FROM income
+      JOIN user_income_category
+      ON income.user_income_category_id = user_income_category.id
+      WHERE income.user_id = :user_id AND description LIKE :description
+      ORDER BY income.date DESC, income.id DESC
+      LIMIT {$length} OFFSET {$offset}",
+      $params
     )->findall();
   }
 

@@ -10,24 +10,26 @@ class ExpenseService
 {
   public function __construct(private Database $db) {}
 
-  public function getUserExpenses()
+  public function getUserExpenses(int $length, int $offset, string $searchTerm)
   {
-    $searchTerm = addcslashes($_GET['s'] ?? '', '%_');
+    $params = [
+      'user_id' => $_SESSION['user'],
+      'description' => "%{$searchTerm}%"
+    ];
 
     return $this->db->query(
-      "SELECT DATE_FORMAT(expense.date, '%Y-%m-%d') as date, expense.amount as amount, user_expense_category.name as category, user_payment_method.name as payment, expense.description as description,
-        ROW_NUMBER() OVER (ORDER BY expense.date, expense.id) AS ordinal_number
-       FROM expense
-       JOIN user_expense_category
-       ON expense.user_expense_category_id = user_expense_category.id
-       JOIN user_payment_method
-       ON expense.user_payment_method_id = user_payment_method.id
-       WHERE expense.user_id = :user_id AND description LIKE :description
-       ORDER BY expense.date DESC, expense.id DESC",
-      [
-        'user_id' => $_SESSION['user'],
-        'description' => "%{$searchTerm}%"
-      ]
+      "SELECT DATE_FORMAT(expense.date, '%Y-%m-%d') as date, expense.amount as amount, user_expense_category.name as category,  user_payment_method.name as payment, expense.description as description,
+      ROW_NUMBER() OVER (ORDER BY expense.date, expense.id) AS ordinal_number,
+      count(*) OVER() AS records_count
+      FROM expense
+      JOIN user_expense_category
+      ON expense.user_expense_category_id = user_expense_category.id
+      JOIN user_payment_method
+      ON expense.user_payment_method_id = user_payment_method.id
+      WHERE expense.user_id = :user_id AND description LIKE :description
+      ORDER BY expense.date DESC, expense.id DESC
+      LIMIT {$length} OFFSET {$offset}",
+      $params
     )->findall();
   }
 

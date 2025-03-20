@@ -102,7 +102,7 @@ header .logo:hover {
 
 .form-error-message {
   color: #d21414;
-  font-size: 15px;
+  font-size: 1rem;
   margin-top: 2px;
   margin-bottom: 5px;
 }
@@ -129,7 +129,6 @@ button.confirm {
 button.confirm:hover {
   background-color: #299c29 !important;
   border: 2px solid #299c29 !important;
-
 }
 
 button.cancel {
@@ -192,12 +191,29 @@ table {
 table,
 th {
   margin: auto;
-  padding: 10px;
+  padding: 15px;
 }
 
 th {
   font-weight: normal;
   border: 1px solid #299c29;
+  width: auto;
+}
+
+.width-ge-50 {
+  min-width: 50px;
+}
+
+.width-ge-120 {
+  min-width: 120px;
+}
+
+.width-ge-180 {
+  min-width: 180px;
+}
+
+.width-ge-350 {
+  min-width: 350px;
 }
 
 th.number {
@@ -224,6 +240,24 @@ tr.summary>th {
 
 .row_light {
   background-color: #FFF8D6;
+}
+
+
+.pagination {
+  display: inline-block;
+  color: gray;
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: #41be41;
+  font-size: 1.5rem;
+  padding: 10px 10px;
+}
+
+.pagination .current_page {
+  color: #299c29;
+  font-weight: bold;
 }
 
 

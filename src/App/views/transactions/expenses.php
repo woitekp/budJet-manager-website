@@ -21,17 +21,37 @@ $expenses = $expenses ?? array();
     foreach ($expenses as $expense) {
       echo
       '<tr class="' . $rowStyle . '">
-        <th class="number">' . escape($expense['ordinal_number']) . '</th>
-        <th>' . escape($expense['date']) . '</th>
-        <th>' .  escape($expense['amount']) . '</th>
-        <th>' .  escape($expense['category']) . '</th>
-        <th>' .  escape($expense['payment']) . '</th>
-        <th>' .  escape($expense['description']) . '</th>
+        <th class="number width-ge-50">' . escape($expense['ordinal_number']) . '</th>
+        <th class="width-ge-120">' .  escape($expense['date']) . '</th>
+        <th class="width-ge-180">' .  escape($expense['amount']) . '</th>
+        <th class="width-ge-180">' .  escape($expense['category']) . '</th>
+        <th class="width-ge-120">' .  escape($expense['payment']) . '</th>
+        <th class="width-ge-350">' .  escape($expense['description']) . '</th>
       </tr>';
       $rowStyle = ($rowStyle == "row_light") ? "row_dark" : "row_light";
     }
     ?>
   </table>
+
+  <div class="pagination">
+    <a
+      <?php if ($currentPage > 1) : ?> href="/expenses?<?php echo escape($previousPageQuery); ?>"
+      <?php endif; ?>>
+      &lt&lt
+    </a>
+
+    <?php foreach ($pageLinks as $pageNum => $query) : ?>
+      <a href="/expenses?<?php echo escape($query); ?>" class=<?php echo $pageNum + 1 === $currentPage ? "current_page" : "" ?>>
+        <?php echo $pageNum + 1; ?>
+      </a>
+    <?php endforeach; ?>
+
+    <a
+      <?php if ($currentPage < $lastPage) : ?> href=" /expenses?<?php echo escape($nextPageQuery); ?>"
+      <?php endif; ?>>
+      &gt&gt
+    </a>
+  </div>
 </main>
 
 <?php include $this->resolve("partials/_footer.php"); ?>
