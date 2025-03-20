@@ -25,7 +25,10 @@ $incomes = $incomes ?? array();
         <th class="width-ge-180">' . escape($income['amount']) . '</th>
         <th class="width-ge-180">' . escape($income['category']) . '</th>
         <th class="width-ge-350">' . escape($income['description']) . '</th>
-      </tr>';
+        <th class="null edit"> <a href="/incomes/' . escape($income['id']) . '">edit</a></th>
+        <th class="null delete"> <a href="/incomes/' . escape($income['id']) . '">delete</a></th>
+      </tr> ';
+
       $rowStyle = ($rowStyle == "row_light") ? "row_dark" : "row_light";
     }
     ?>

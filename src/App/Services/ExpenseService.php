@@ -18,7 +18,7 @@ class ExpenseService
     ];
 
     return $this->db->query(
-      "SELECT DATE_FORMAT(expense.date, '%Y-%m-%d') as date, expense.amount as amount, user_expense_category.name as category,  user_payment_method.name as payment, expense.description as description,
+      "SELECT expense.id, DATE_FORMAT(expense.date, '%Y-%m-%d') as date, expense.amount as amount, user_expense_category.name as category,  user_payment_method.name as payment, expense.description as description,
       ROW_NUMBER() OVER (ORDER BY expense.date, expense.id) AS ordinal_number,
       count(*) OVER() AS records_count
       FROM expense

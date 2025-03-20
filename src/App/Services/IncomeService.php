@@ -18,7 +18,7 @@ class IncomeService
     ];
 
     return $this->db->query(
-      "SELECT DATE_FORMAT(income.date, '%Y-%m-%d') as date, income.amount as amount, user_income_category.name as category, income.description as description,
+      "SELECT income.id, DATE_FORMAT(income.date, '%Y-%m-%d') as date, income.amount as amount, user_income_category.name as category, income.description as description,
         ROW_NUMBER() OVER (ORDER BY income.date, income.id) AS ordinal_number,
       count(*) OVER() AS records_count
       FROM income

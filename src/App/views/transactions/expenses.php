@@ -15,6 +15,7 @@ $expenses = $expenses ?? array();
       <th>Category</th>
       <th>Payment</th>
       <th>Description</th>
+      <th class="null"></th>
     </tr>
     <?php
     $rowStyle = "row_dark";
@@ -27,6 +28,8 @@ $expenses = $expenses ?? array();
         <th class="width-ge-180">' .  escape($expense['category']) . '</th>
         <th class="width-ge-120">' .  escape($expense['payment']) . '</th>
         <th class="width-ge-350">' .  escape($expense['description']) . '</th>
+        <th class="null edit"> <a href="/expenses/' . escape($expense['id']) . '">edit</a></th>
+        <th class="null delete"> <a href="/expenses/' . escape($expense['id']) . '">delete</a></th>
       </tr>';
       $rowStyle = ($rowStyle == "row_light") ? "row_dark" : "row_light";
     }

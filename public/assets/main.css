@@ -185,19 +185,44 @@ table>caption {
 
 table {
   clear: both;
-  border: 2px solid #299c29;
+  margin: auto;
+  margin-top: 20px;
 }
 
 table,
 th {
-  margin: auto;
   padding: 15px;
 }
 
 th {
   font-weight: normal;
   border: 1px solid #299c29;
-  width: auto;
+}
+
+th.null {
+  border: 0px;
+  background-color: #dff4df;
+}
+
+th>a {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+th.edit>a {
+  color: #41be41;
+}
+
+th.edit>a:hover {
+  color: #299c29;
+}
+
+th.delete>a {
+  color: #de3e51;
+}
+
+th.delete>a:hover {
+  color: #d21414;
 }
 
 .width-ge-50 {
@@ -230,7 +255,6 @@ tr.summary>th {
 
 .column_names>* {
   font-weight: bold;
-  border: 2px solid #299c29;
 }
 
 
