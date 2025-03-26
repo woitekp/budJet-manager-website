@@ -56,7 +56,7 @@ class ValidatorService
       'date' => ['required', 'dateFormat:Y-m-d'],
       'category' => ['required'],
       'payment' => ['required'],
-      'comment' => ['lengthMax:255']
+      'description' => ['lengthMax:255']
     ]);
   }
 
@@ -66,7 +66,7 @@ class ValidatorService
       'amount' => ['required', 'numeric'],
       'date' => ['required', 'dateFormat:Y-m-d'],
       'category' => ['required'],
-      'comment' => ['lengthMax:255']
+      'description' => ['lengthMax:255']
     ]);
   }
 }

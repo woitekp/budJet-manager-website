@@ -69,4 +69,47 @@ class IncomeService
 
     return $categories;
   }
+
+  public function getUserIncome(string $incomeId)
+  {
+    return $this->db->query(
+      "SELECT income.id, DATE_FORMAT(income.date, '%Y-%m-%d') as date, income.amount as amount, user_income_category.name as category, income.description as description
+      FROM income
+      JOIN user_income_category
+      ON income.user_income_category_id = user_income_category.id
+      WHERE income.id = :id AND income.user_id = :user_id",
+      [
+        'id' => (int) $incomeId,
+        'user_id' => $_SESSION['user']
+      ]
+    )->find();
+  }
+
+  public function updateIncome(array $formData, int $incomeId)
+  {
+    $userIncomeCategoryId = $this->db->query(
+      "SELECT id FROM user_income_category WHERE name = :category and user_id = :user_id",
+      [
+        'category' => $formData['category'],
+        'user_id' => $_SESSION['user']
+      ]
+    )->find()['id'];
+
+    $this->db->query(
+      "UPDATE income
+      SET user_income_category_id = :user_income_category_id,
+          amount = :amount,
+          date = :date,
+          description = :description
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'user_income_category_id' => $userIncomeCategoryId,
+        'amount' => $formData['amount'],
+        'date' => $formData['date'],
+        'description' => $formData['description'],
+        'user_id' => $_SESSION['user'],
+        'id' => $incomeId
+      ]
+    );
+  }
 }

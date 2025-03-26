@@ -30,9 +30,8 @@ $categories = $categories ?? array();
     <label for="inputDescription" class="sr-only">Description</label>
     <input name="description" type="text" class="form-control form-bottom-elem text-centered" placeholder="Description (optional)">
 
-    <div class="grid-container">
-      <button name="cancel" class="cancel left btn btn-lg btn-primary btn-info" type="submit">Cancel</button>
-      <button name="add" class="confirm right btn btn-lg btn-primary btn-info" type="submit">Add income</button>
+    <div>
+      <button name="add" class="confirm btn btn-lg btn-primary btn-block" type="submit">Add income</button>
     </div>
   </form>
 

@@ -108,7 +108,7 @@ header .logo:hover {
 }
 
 
-.grid-container {
+.buttons-grid-container {
   display: grid;
   grid-template-areas: "button1 button2";
   grid-template-rows: 1fr 1fr;

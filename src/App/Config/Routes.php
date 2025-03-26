@@ -26,8 +26,11 @@ function registerRoutes(App $app)
   $app->get('/expense', [ExpenseController::class, 'addExpenseView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->post('/expense', [ExpenseController::class, 'createExpense'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->get('/expenses', [ExpenseController::class, 'expensesView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->get('expenses/{expense_id}', [ExpenseController::class, 'editExpenseView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->post('expenses/{expense_id}', [ExpenseController::class, 'editExpense'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->get('/income', [IncomeController::class, 'addIncomeView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->post('/income', [IncomeController::class, 'createIncome'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->get('/incomes', [IncomeController::class, 'incomesView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->get('incomes/{income_id}', [IncomeController::class, 'editIncomeView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->post('incomes/{income_id}', [IncomeController::class, 'editIncome'])->addRouteMiddleware(AuthRequiredMiddleware::class);
 }

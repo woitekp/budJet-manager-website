@@ -15,15 +15,24 @@ class Router
     $method = strtoupper($method);
 
     foreach ($this->routes as $route) {
-      if (!preg_match("#^{$route['path']}$#", $path) || $route['method'] !== $method)  // ^, $ - value begins and ends (respectively) with the pattern
+      if (!preg_match("#^{$route['regexPath']}$#", $path, $paramValues) || $route['method'] !== $method)  // ^, $ - value begins and ends (respectively) with the pattern
       {
         continue;
       }
 
+      // first match is full path (e.g. 'expenses/1') which is not needed. With array_shift() first key of an arrays is removed
+      array_shift($paramValues);
+
+      preg_match_all('#{([^/]+)}#',  $route['path'], $paramKeys);
+
+      $paramKeys = $paramKeys[1];
+
+      $params = array_combine($paramKeys, $paramValues);
+
       [$class, $function] = $route['controller'];  // destructurization
       $controllerInstance = $container ? $container->resolve($class) : new $class;
 
-      $action = fn() => $controllerInstance->{$function}();  // PHP attempts to resolve string value to a class method
+      $action = fn() => $controllerInstance->{$function}($params);  // PHP attempts to resolve string value to a class method
 
       $allMiddleware = [...$route['middlewares'], ...$this->middlewares];
 
@@ -40,11 +49,14 @@ class Router
   {
     $path = $this->normalizePath($path);
 
+    $regexPath = preg_replace('#{[^/]+}#', '([^/]+)', $path);
+
     $this->routes[] = [
       'method' => strtoupper($method),
       'path' => $path,
       'controller' => $controller,
-      'middlewares' => []
+      'middlewares' => [],
+      'regexPath' => $regexPath
     ];
   }
 

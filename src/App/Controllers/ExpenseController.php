@@ -41,7 +41,7 @@ class ExpenseController
       $pageNums
     );
 
-    echo $this->view->render("transactions/expenses.php", [
+    echo $this->view->render("expenses/list.php", [
       'expenses' => $expenses,
       'currentPage' => $currentPage,
       'lastPage' => $lastPage,
@@ -61,9 +61,9 @@ class ExpenseController
   public function addExpenseView()
   {
     $categories = $this->expenseService->getUserExpenseCategories();
-    $paymentMethods = $this->expenseService->getuserPaymentMethods();
+    $paymentMethods = $this->expenseService->getUserPaymentMethods();
 
-    echo $this->view->render("transactions/expense.php", [
+    echo $this->view->render("expenses/create.php", [
       'categories' => $categories,
       'paymentMethods' => $paymentMethods
     ]);
@@ -74,5 +74,33 @@ class ExpenseController
     $this->validatorService->validateExpense($_POST);
     $this->expenseService->createExpense($_POST);
     redirectTo('/expenses');
+  }
+  
+    public function editExpenseView(array $params)
+  {
+    $expense = $this->expenseService->getUserExpense($params['expense_id']);
+    if (!$expense) {
+      redirectTo('/expenses');
+    }
+
+    $categories = $this->expenseService->getUserExpenseCategories();
+    $paymentMethods = $this->expenseService->getUserPaymentMethods();
+    echo $this->view->render('/expenses/edit.php', [
+      'expense' => $expense,
+      'categories' => $categories,
+      'paymentMethods' => $paymentMethods
+    ]);
+  }
+
+  public function editExpense(array $params)
+  {
+    $expense = $this->expenseService->getUserExpense($params['expense_id']);
+    if (!$expense) {
+      redirectTo('/expenses');
+    }
+
+    $this->validatorService->validateExpense($_POST);
+    $this->expenseService->updateExpense($_POST, $expense['id']);
+    redirectTo($_SERVER['HTTP_REFERER']);
   }
 }

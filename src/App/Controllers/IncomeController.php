@@ -41,7 +41,7 @@ class IncomeController
       $pageNums
     );
 
-    echo $this->view->render("transactions/incomes.php", [
+    echo $this->view->render("incomes/list.php", [
       'incomes' => $incomes,
       'currentPage' => $currentPage,
       'lastPage' => $lastPage,
@@ -62,7 +62,7 @@ class IncomeController
   {
     $categories = $this->incomeService->getUserIncomeCategories();
 
-    echo $this->view->render("transactions/income.php", [
+    echo $this->view->render("incomes/create.php", [
       'categories' => $categories
     ]);
   }
@@ -74,5 +74,29 @@ class IncomeController
     redirectTo('/incomes');
   }
 
-  public function editIncomeView(array $params) {}
+  public function editIncomeView(array $params)
+  {
+    $income = $this->incomeService->getUserIncome($params['income_id']);
+    if (!$income) {
+      redirectTo('/incomes');
+    }
+
+    $categories = $this->incomeService->getUserIncomeCategories();
+    echo $this->view->render('/incomes/edit.php', [
+      'income' => $income,
+      'categories' => $categories
+    ]);
+  }
+
+  public function editIncome(array $params)
+  {
+    $income = $this->incomeService->getUserIncome($params['income_id']);
+    if (!$income) {
+      redirectTo('/incomes');
+    }
+
+    $this->validatorService->validateIncome($_POST);
+    $this->incomeService->updateIncome($_POST, $income['id']);
+    redirectTo($_SERVER['HTTP_REFERER']);
+  }
 }
