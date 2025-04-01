@@ -33,7 +33,7 @@ $description = escape($expense['description'] ?? '');
       }
       ?>
     </select>
-   
+
     <label for="inputPayment" class="sr-only">Payment method</label>
     <select name="payment" type="text" class="form-control form-middle-elem text-centered" placeholder="Select payment methid" required="">
       <option value="">Select payment method</option>
@@ -49,8 +49,8 @@ $description = escape($expense['description'] ?? '');
     <input value="<?php echo $description ?>" name="description" type="text" class="form-control form-bottom-elem text-centered" placeholder="Description (optional)">
 
     <div class="buttons-grid-container">
-      <button name="cancel" class="cancel left btn btn-lg btn-primary btn-info" type="reset">Restore</button>
-      <button name="add" class="confirm right btn btn-lg btn-primary btn-info" type="submit">Edit income</button>
+      <button name="cancel" class="cancel left btn btn-lg btn-primary btn-info" type="reset">Cancel</button>
+      <button name="add" class="confirm right btn btn-lg btn-primary btn-info" type="submit">Edit expense</button>
     </div>
   </form>
 

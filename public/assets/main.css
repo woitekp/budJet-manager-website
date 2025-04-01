@@ -33,7 +33,6 @@ header .logo:hover {
   text-decoration: none;
 }
 
-
 .menu {
   margin-top: 20px;
   background-color: #f3eea6;
@@ -117,6 +116,7 @@ header .logo:hover {
 
 
 button {
+  color: white;
   box-shadow: none !important;
 }
 
@@ -158,6 +158,15 @@ button.left {
   padding-right: 1px;
 }
 
+button>a {
+  color: white;
+}
+
+button>a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 
 .login-registration-link {
   color: #71ca71;
@@ -189,14 +198,11 @@ table {
   margin-top: 20px;
 }
 
-table,
 th {
-  padding: 15px;
-}
-
-th {
+  font-size: 1.2rem;
   font-weight: normal;
   border: 1px solid #299c29;
+  padding: 10px;
 }
 
 th.null {
@@ -204,29 +210,18 @@ th.null {
   background-color: #dff4df;
 }
 
-th>a {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
 
-th.edit>a {
-  color: #41be41;
-}
-
-th.edit>a:hover {
-  color: #299c29;
-}
-
-th.delete>a {
-  color: #de3e51;
-}
-
-th.delete>a:hover {
-  color: #d21414;
+button.th-button {
+  padding: 0px;
+  margin: 0px;
 }
 
 .width-ge-50 {
   min-width: 50px;
+}
+
+.width-ge-80 {
+  min-width: 80px;
 }
 
 .width-ge-120 {

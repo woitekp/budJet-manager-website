@@ -1,6 +1,7 @@
 <?php
 $categories = $categories ?? array();
 $paymentMethods = $paymentMethods ?? array();
+$currentDate = date("Y-m-d", time());
 ?>
 
 
@@ -17,7 +18,7 @@ $paymentMethods = $paymentMethods ?? array();
     <input name="amount" type="number" min="0" step="0.01" class="form-control form-top-elem text-centered" placeholder="Amount" required="" autofocus="">
 
     <label for="inputDate" class="sr-only">Date</label>
-    <input name="date" type="date" class="form-control form-middle-elem text-centered" value=<?php echo date("Y-m-d", time()) ?> required="">
+    <input name="date" type="date" class="form-control form-middle-elem text-centered" value=<?php echo $currentDate; ?> required="">
 
     <label for="inputCategory" class="sr-only">Category</label>
     <select name="category" type="text" class="form-control form-middle-elem text-centered" placeholder="Select category" required="">
@@ -43,7 +44,7 @@ $paymentMethods = $paymentMethods ?? array();
     <input name="description" type="text" class="form-control form-bottom-elem text-centered" placeholder="Description (optional)">
 
     <div>
-      <button name="add" class="confirm btn btn-lg btn-primary btn-block" type="submit">Add expense</button>
+      <button name="add" class="confirm btn btn-lg btn-block" type="submit">Add expense</button>
     </div>
   </form>
 

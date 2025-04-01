@@ -1,5 +1,13 @@
 <?php
 $incomes = $incomes ?? array();
+
+$previousPageQuery = escape($previousPageQuery);
+$previousPageHref = ($currentPage > 1) ? "href='/incomes?{$previousPageQuery}'" : '';
+
+$nextPageQuery = escape($nextPageQuery);
+$nextPageHref = ($currentPage < $lastPage) ? "href='/incomes?{$nextPageQuery}'" : '';
+
+$rowStyle = 'row_light'
 ?>
 
 <?php include $this->resolve("partials/_header.php"); ?>
@@ -8,7 +16,7 @@ $incomes = $incomes ?? array();
 <main>
   <?php include $this->resolve("partials/_search.php"); ?>
   <table>
-    <tr class="column_names row_light">
+    <tr class="column_names <?php echo $rowStyle ?>">
       <th>#</th>
       <th>Date</th>
       <th>Amount</th>
@@ -16,28 +24,14 @@ $incomes = $incomes ?? array();
       <th>Description</th>
     </tr>
     <?php
-    $rowStyle = "row_dark";
     foreach ($incomes as $income) {
-      echo
-      '<tr class="' . $rowStyle . '">
-        <th class="number width-ge-50">' . escape($income['ordinal_number']) . '</th>
-        <th class="width-ge-120">' . escape($income['date']) . '</th>
-        <th class="width-ge-180">' . escape($income['amount']) . '</th>
-        <th class="width-ge-180">' . escape($income['category']) . '</th>
-        <th class="width-ge-350">' . escape($income['description']) . '</th>
-        <th class="null edit"> <a href="/incomes/' . escape($income['id']) . '">edit</a></th>
-        <th class="null delete"> <a href="/incomes/' . escape($income['id']) . '">delete</a></th>
-      </tr> ';
-
-      $rowStyle = ($rowStyle == "row_light") ? "row_dark" : "row_light";
+      include $this->resolve("incomes/income.php");
     }
     ?>
   </table>
 
   <div class="pagination">
-    <a
-      <?php if ($currentPage > 1) : ?> href="/incomes?<?php echo escape($previousPageQuery); ?>"
-      <?php endif; ?>>
+    <a <?php echo $previousPageHref; ?>>
       &lt&lt
     </a>
 
@@ -47,9 +41,7 @@ $incomes = $incomes ?? array();
       </a>
     <?php endforeach; ?>
 
-    <a
-      <?php if ($currentPage < $lastPage) : ?> href=" /incomes?<?php echo escape($nextPageQuery); ?>"
-      <?php endif; ?>>
+    <a <?php echo $nextPageHref; ?>>
       &gt&gt
     </a>
   </div>

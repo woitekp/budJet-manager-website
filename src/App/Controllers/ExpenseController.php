@@ -75,8 +75,8 @@ class ExpenseController
     $this->expenseService->createExpense($_POST);
     redirectTo('/expenses');
   }
-  
-    public function editExpenseView(array $params)
+
+  public function editExpenseView(array $params)
   {
     $expense = $this->expenseService->getUserExpense($params['expense_id']);
     if (!$expense) {
@@ -102,5 +102,11 @@ class ExpenseController
     $this->validatorService->validateExpense($_POST);
     $this->expenseService->updateExpense($_POST, $expense['id']);
     redirectTo($_SERVER['HTTP_REFERER']);
+  }
+
+  public function delete(array $params)
+  {
+    $this->expenseService->deleteExpense((int) $params['expense_id']);
+    redirectTo('/expenses');
   }
 }

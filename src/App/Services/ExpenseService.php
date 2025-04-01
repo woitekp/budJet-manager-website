@@ -96,7 +96,7 @@ class ExpenseService
 
     return $paymentMethods;
   }
-  
+
   public function getUserExpense(string $expenseId)
   {
     return $this->db->query(
@@ -123,7 +123,7 @@ class ExpenseService
         'user_id' => $_SESSION['user']
       ]
     )->find()['id'];
-    
+
     $userPaymentMethodId = $this->db->query(
       "SELECT id FROM user_payment_method WHERE name = :payment and user_id = :user_id",
       [
@@ -149,6 +149,18 @@ class ExpenseService
         'description' => $formData['description'],
         'user_id' => $_SESSION['user'],
         'id' => $expenseId
+      ]
+    );
+  }
+
+  public function deleteExpense(int $expenseId)
+  {
+    $this->db->query(
+      "DELETE FROM expense
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'id' => $expenseId,
+        'user_id' => $_SESSION['user']
       ]
     );
   }
