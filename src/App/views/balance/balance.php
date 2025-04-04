@@ -5,7 +5,6 @@ $previousMonth = 'Previous month';
 $currentYear = 'Current year';
 $custom = 'Custom';
 
-
 $balancePeriod = escape($balancePeriod ?? 'currentMonth');
 $startDate = escape($startDate ?? '');
 $endDate = escape($endDate ?? '');

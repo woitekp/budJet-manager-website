@@ -102,9 +102,4 @@ class BalanceService
       $params
     )->findall();
   }
-
-  public function getUserBalance()
-  {
-    return 'balance';
-  }
 }

@@ -41,14 +41,12 @@ class BalanceController
       $endDate = date('Y-m-t'); // last day of month
     }
 
-    $balance = $this->balanceService->getUserBalance();
     $incomesByCategories = $this->balanceService->getUserIncomesByCategories($startDate, $endDate);
     $expensesByCategories = $this->balanceService->getUserExpensesByCategories($startDate, $endDate);
     $incomes = $this->balanceService->getUserIncomes($startDate, $endDate);
     $expenses = $this->balanceService->getUserExpenses($startDate, $endDate);
 
-    echo $this->view->render('/balance/balance.php', [
-      'balance' => $balance,
+    echo $this->view->render('/balance/balance.php', [,
       'balancePeriod' => $balancePeriod,
       'startDate' => $startDate,
       'endDate' => $endDate,
