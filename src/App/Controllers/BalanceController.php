@@ -46,7 +46,7 @@ class BalanceController
     $incomes = $this->balanceService->getUserIncomes($startDate, $endDate);
     $expenses = $this->balanceService->getUserExpenses($startDate, $endDate);
 
-    echo $this->view->render('/balance/balance.php', [,
+    echo $this->view->render('/balance/balance.php', [
       'balancePeriod' => $balancePeriod,
       'startDate' => $startDate,
       'endDate' => $endDate,
