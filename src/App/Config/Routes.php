@@ -8,6 +8,7 @@ use Framework\App;
 use App\Controllers\{
   AboutController,
   AuthController,
+  BalanceController,
   ExpenseController,
   HomeController,
   IncomeController
@@ -34,4 +35,5 @@ function registerRoutes(App $app)
   $app->get('/incomes', [IncomeController::class, 'incomesView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->get('incomes/{income_id}', [IncomeController::class, 'editIncomeView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->post('incomes/{income_id}', [IncomeController::class, 'editIncome'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->get('/balance', [BalanceController::class, 'balanceView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
 }

@@ -15,7 +15,7 @@
   <header>
 
     <h1>
-      <a href="/" class="logo">BudJet Manager</a>
+      <a href="/balance" class="logo">BudJet Manager</a>
     </h1>
 
   </header>

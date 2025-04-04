@@ -183,6 +183,10 @@ button>a:hover {
   margin: auto;
 }
 
+.input-description {
+  margin: 10px;
+}
+
 
 table>caption {
   caption-side: top;

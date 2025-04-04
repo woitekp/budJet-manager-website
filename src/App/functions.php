@@ -2,19 +2,17 @@
 
 declare(strict_types=1);
 
-//echo '<pre>' . __FILE__ . '</pre>';
-
 function dump_and_die(mixed $var)
 {
   echo "<pre>";
-  var_dump ($var);
+  var_dump($var);
   echo "</pre>";
   die(); // do not render the rest of the page
 }
 
 function escape(mixed $value): string
 {
-  return htmlspecialchars((string )$value);
+  return htmlspecialchars((string)$value);
 }
 
 function redirectTo(string $path)

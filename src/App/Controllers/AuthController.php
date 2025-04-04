@@ -26,7 +26,7 @@ class AuthController
     $this->validatorService->validateRegister($_POST);
     $this->userService->isEmailTaken($_POST['email']);
     $this->userService->create($_POST);
-    redirectTo('/');
+    redirectTo('/balance');
   }
 
   public function loginView()
@@ -38,7 +38,7 @@ class AuthController
   {
     $this->validatorService->validateLogin($_POST);
     $this->userService->login($_POST);
-    redirectTo('/');
+    redirectTo('/balance');
   }
 
   public function logout()
