@@ -99,4 +99,10 @@ class IncomeController
     $this->incomeService->updateIncome($_POST, $income['id']);
     redirectTo($_SERVER['HTTP_REFERER']);
   }
+
+  public function deleteIncome(array $params)
+  {
+    $this->incomeService->deleteIncome((int) $params['income_id']);
+    redirectTo('/incomes');
+  }
 }

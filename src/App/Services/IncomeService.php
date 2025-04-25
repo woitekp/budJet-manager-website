@@ -97,6 +97,19 @@ class IncomeService
     );
   }
 
+
+  public function deleteIncome(int $incomeId)
+  {
+    $this->db->query(
+      "DELETE FROM income
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'id' => $incomeId,
+        'user_id' => $_SESSION['user']
+      ]
+    );
+  }
+
   public function getUserIncomeCategories(bool $enumerate = false)
   {
     $categories = array();

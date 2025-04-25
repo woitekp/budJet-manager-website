@@ -104,7 +104,7 @@ class ExpenseController
     redirectTo($_SERVER['HTTP_REFERER']);
   }
 
-  public function delete(array $params)
+  public function deleteExpense(array $params)
   {
     $this->expenseService->deleteExpense((int) $params['expense_id']);
     redirectTo('/expenses');
