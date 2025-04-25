@@ -69,4 +69,11 @@ class ValidatorService
       'description' => ['lengthMax:255']
     ]);
   }
+
+  public function validateCategory(array $formData)
+  {
+    $this->validator->validate($formData, [
+      'name' => ['required', 'lengthMax:50']
+    ]);
+  }
 }

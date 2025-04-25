@@ -65,34 +65,48 @@ class ExpenseService
     );
   }
 
-  public function getUserExpenseCategories()
+  public function getUserExpenseCategories(bool $enumerate = false)
   {
     $categories = array();
     $query = $this->db->query(
-      "SELECT name FROM user_expense_category WHERE user_id = :user",
+      "SELECT id, name, ROW_NUMBER()  OVER(order by name) AS ordinal_number
+       FROM user_expense_category WHERE user_id = :user ORDER BY name",
       [
         'user' => $_SESSION['user']
       ]
     );
     while ($row = $query->find()) {
-      array_push($categories, $row['name']);
+      array_push($categories, $row);
+    }
+
+    if (! $enumerate) {
+      $categories = array_map(function ($category) {
+        return $category['name'];
+      }, $categories);
     }
 
     return $categories;
   }
 
-  public function getUserPaymentMethods()
+  public function getUserPaymentMethods(bool $enumerate = false)
   {
     $paymentMethods = array();
     $query = $this->db->query(
-      "SELECT name FROM user_payment_method WHERE user_id = :user",
+      "SELECT name, ROW_NUMBER() OVER(ORDER BY name) as ordinal_number
+       FROM user_payment_method WHERE user_id = :user ORDER BY name",
       [
         'user' => $_SESSION['user']
       ]
     );
+
     while ($row = $query->find()) {
-      array_push($paymentMethods, $row['name']);
+      array_push($paymentMethods, $row);
     }
+
+    if (! $enumerate)
+      $paymentMethods = array_map(function ($category) {
+        return $category['name'];
+      }, $paymentMethods);
 
     return $paymentMethods;
   }
@@ -163,5 +177,71 @@ class ExpenseService
         'user_id' => $_SESSION['user']
       ]
     );
+  }
+
+  public function getUserExpenseCategory(string $categoryId)
+  {
+    return $this->db->query(
+      "SELECT id, name
+      FROM user_expense_category
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'id' => (int) $categoryId,
+        'user_id' => $_SESSION['user']
+      ]
+    )->find();
+  }
+
+  public function updateExpenseCategory(array $formData, int $categoryId)
+  {
+    $this->db->query(
+      "UPDATE user_expense_category
+      SET name = :name
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'name' => $formData['name'],
+        'id' => $categoryId,
+        'user_id' => $_SESSION['user'],
+      ]
+    );
+  }
+
+  public function deleteExpenseCategory(int $categoryId)
+  {
+    $this->db->query(
+      "DELETE FROM user_expense_category
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'id' => $categoryId,
+        'user_id' => $_SESSION['user']
+      ]
+    );
+  }
+
+  public function userExpenseCategoryExists(string $name)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM user_expense_category
+      WHERE name = :name AND user_id = :user_id",
+      [
+        'name' => $name,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    return ($nameCount > 0);
+  }
+
+  public function countExpensesInCategory(int $categoryId)
+  {
+    return $this->db->query(
+      "SELECT COUNT(*)
+      FROM expense
+      WHERE expense.user_expense_category_id = :category_id AND expense.user_id = :user_id",
+      [
+        'category_id' => $categoryId,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
   }
 }

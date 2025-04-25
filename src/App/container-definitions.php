@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Framework\{Container, Database, TemplateEngine};
 use App\Config\Paths;
-use App\Services\{BalanceService, ExpenseService, IncomeService, UserService, ValidatorService};
+use App\Services\{BalanceService, ExpenseService, IncomeService, SettingsService, UserService, ValidatorService};
 
 return [
   TemplateEngine::class => fn() => new TemplateEngine(Paths::VIEW),  // alternatively anonymous function could be used instead of arrow function: function() {return new TemplateEngine(Paths::VIEW);}
@@ -34,5 +34,9 @@ return [
   BalanceService::class => function (Container $container) {
     $db = $container->getDependency(Database::class);
     return new BalanceService($db);
+  },
+  SettingsService::class => function (Container $container) {
+    $db = $container->getDependency(Database::class);
+    return new SettingsService($db);
   }
 ];

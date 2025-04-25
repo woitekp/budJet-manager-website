@@ -11,7 +11,8 @@ use App\Controllers\{
   BalanceController,
   ExpenseController,
   HomeController,
-  IncomeController
+  IncomeController,
+  SettingsController
 };
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
 
@@ -36,4 +37,12 @@ function registerRoutes(App $app)
   $app->get('incomes/{income_id}', [IncomeController::class, 'editIncomeView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->post('incomes/{income_id}', [IncomeController::class, 'editIncome'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->get('/balance', [BalanceController::class, 'balanceView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->get('/settings', [SettingsController::class, 'settingsView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->get('/settings/incomes/{category_id}', [SettingsController::class, 'editIncomeCategoryView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->post('/settings/incomes/{category_id}', [SettingsController::class, 'editIncomeCategory'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->delete('/settings/incomes/{category_id}', [SettingsController::class, 'deleteIncomeCategory'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+
+  $app->get('/settings/expenses/{category_id}', [SettingsController::class, 'editExpenseCategoryView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->post('/settings/expenses/{category_id}', [SettingsController::class, 'editExpenseCategory'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->delete('/settings/expenses/{category_id}', [SettingsController::class, 'deleteExpenseCategory'])->addRouteMiddleware(AuthRequiredMiddleware::class);
 }

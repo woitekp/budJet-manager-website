@@ -8,6 +8,7 @@ html {
   overflow-y: scroll;
 }
 
+
 body {
   /* flex with height: 100vh makes footer staying at the bottom of the page and not overlapping the page */
   height: 100vh;
@@ -194,6 +195,7 @@ table>caption {
   text-align: center;
   font-size: 1.6rem;
   font-weight: bold;
+  min-width: 250px;
 }
 
 table {
@@ -330,7 +332,6 @@ tr.summary>th {
 
 
 footer {
-  padding: 10px;
   margin-top: auto;
   /* auto with proper body settings (see body section) makes footer staying at the bottom of the page and not overlapping the page */
 }

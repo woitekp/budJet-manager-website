@@ -54,22 +54,6 @@ class IncomeService
     );
   }
 
-  public function getUserIncomeCategories()
-  {
-    $categories = array();
-    $query = $this->db->query(
-      "SELECT name FROM user_income_category WHERE user_id = :user",
-      [
-        'user' => $_SESSION['user']
-      ]
-    );
-    while ($row = $query->find()) {
-      array_push($categories, $row['name']);
-    }
-
-    return $categories;
-  }
-
   public function getUserIncome(string $incomeId)
   {
     return $this->db->query(
@@ -111,5 +95,93 @@ class IncomeService
         'id' => $incomeId
       ]
     );
+  }
+
+  public function getUserIncomeCategories(bool $enumerate = false)
+  {
+    $categories = array();
+    $query = $this->db->query(
+      "SELECT id, name, ROW_NUMBER() OVER (ORDER BY name) AS ordinal_number
+       FROM user_income_category WHERE user_id = :user ORDER BY name",
+      [
+        'user' => $_SESSION['user']
+      ]
+    );
+    while ($row = $query->find()) {
+      array_push($categories, $row);
+    }
+
+    if (!$enumerate)
+      $categories = array_map(function ($category) {
+        return $category['name'];
+      }, $categories);
+
+    return $categories;
+  }
+
+  public function getUserIncomeCategory(string $categoryId)
+  {
+    return $this->db->query(
+      "SELECT id, name
+      FROM user_income_category
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'id' => (int) $categoryId,
+        'user_id' => $_SESSION['user']
+      ]
+    )->find();
+  }
+
+  public function updateIncomeCategory(array $formData, int $categoryId)
+  {
+    $this->db->query(
+      "UPDATE user_income_category
+      SET name = :name
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'name' => $formData['name'],
+        'id' => $categoryId,
+        'user_id' => $_SESSION['user'],
+      ]
+    );
+  }
+
+  public function deleteIncomeCategory(int $categoryId)
+  {
+    $this->db->query(
+      "DELETE FROM user_income_category
+      WHERE id = :id AND user_id = :user_id",
+      [
+        'id' => $categoryId,
+        'user_id' => $_SESSION['user']
+      ]
+    );
+  }
+
+  public function userIncomeCategoryExists(string $name)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM user_income_category
+      WHERE name = :name AND user_id = :user_id",
+      [
+        'name' => $name,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    return ($nameCount > 0);
+  }
+
+  public function countIncomesInCategory(int $categoryId)
+  {
+    return $this->db->query(
+      "SELECT COUNT(*)
+      FROM income
+      WHERE income.user_income_category_id = :category_id AND income.user_id = :user_id",
+      [
+        'category_id' => $categoryId,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
   }
 }
