@@ -54,7 +54,7 @@ class IncomeService
     );
   }
 
-  public function getUserIncome(string $incomeId)
+  public function getUserIncome(int $incomeId)
   {
     return $this->db->query(
       "SELECT income.id, DATE_FORMAT(income.date, '%Y-%m-%d') as date, income.amount as amount, user_income_category.name as category, income.description as description
@@ -132,7 +132,7 @@ class IncomeService
     return $categories;
   }
 
-  public function getUserIncomeCategory(string $categoryId)
+  public function getUserIncomeCategory(int $categoryId)
   {
     return $this->db->query(
       "SELECT id, name

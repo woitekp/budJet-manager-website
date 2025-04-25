@@ -76,7 +76,7 @@ class IncomeController
 
   public function editIncomeView(array $params)
   {
-    $income = $this->incomeService->getUserIncome($params['income_id']);
+    $income = $this->incomeService->getUserIncome((int) $params['income_id']);
     if (!$income) {
       redirectTo('/incomes');
     }
@@ -90,7 +90,7 @@ class IncomeController
 
   public function editIncome(array $params)
   {
-    $income = $this->incomeService->getUserIncome($params['income_id']);
+    $income = $this->incomeService->getUserIncome((int) $params['income_id']);
     if (!$income) {
       redirectTo('/incomes');
     }

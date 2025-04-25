@@ -78,7 +78,7 @@ class ExpenseController
 
   public function editExpenseView(array $params)
   {
-    $expense = $this->expenseService->getUserExpense($params['expense_id']);
+    $expense = $this->expenseService->getUserExpense((int) $params['expense_id']);
     if (!$expense) {
       redirectTo('/expenses');
     }
@@ -94,7 +94,7 @@ class ExpenseController
 
   public function editExpense(array $params)
   {
-    $expense = $this->expenseService->getUserExpense($params['expense_id']);
+    $expense = $this->expenseService->getUserExpense((int) $params['expense_id']);
     if (!$expense) {
       redirectTo('/expenses');
     }

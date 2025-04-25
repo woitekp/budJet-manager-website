@@ -111,7 +111,7 @@ class ExpenseService
     return $paymentMethods;
   }
 
-  public function getUserExpense(string $expenseId)
+  public function getUserExpense(int $expenseId)
   {
     return $this->db->query(
       "SELECT expense.id, DATE_FORMAT(expense.date, '%Y-%m-%d') as date, expense.amount as amount, user_expense_category.name as category, user_payment_method.name as payment, expense.description as description
@@ -179,7 +179,7 @@ class ExpenseService
     );
   }
 
-  public function getUserExpenseCategory(string $categoryId)
+  public function getUserExpenseCategory(int $categoryId)
   {
     return $this->db->query(
       "SELECT id, name

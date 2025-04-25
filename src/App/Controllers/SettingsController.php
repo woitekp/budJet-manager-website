@@ -31,7 +31,7 @@ class SettingsController
 
   public function editIncomeCategoryView(array $params)
   {
-    $incomeCategory = $this->incomeService->getUserIncomeCategory($params['category_id']);
+    $incomeCategory = $this->incomeService->getUserIncomeCategory((int) $params['category_id']);
 
     if (!$incomeCategory) {
       redirectTo('/settings');
@@ -44,7 +44,7 @@ class SettingsController
 
   public function editIncomeCategory(array $params)
   {
-    $incomeCategory = $this->incomeService->getUserIncomeCategory($params['category_id']);
+    $incomeCategory = $this->incomeService->getUserIncomeCategory((int) $params['category_id']);
     if (!$incomeCategory) {
       redirectTo('/settings');
     }
@@ -74,7 +74,7 @@ class SettingsController
 
   public function editExpenseCategoryView(array $params)
   {
-    $expenseCategory = $this->expenseService->getUserExpenseCategory($params['category_id']);
+    $expenseCategory = $this->expenseService->getUserExpenseCategory((int) $params['category_id']);
 
     if (!$expenseCategory) {
       redirectTo('/settings');
@@ -87,7 +87,7 @@ class SettingsController
 
   public function editExpenseCategory(array $params)
   {
-    $expenseCategory = $this->expenseService->getUserExpenseCategory($params['category_id']);
+    $expenseCategory = $this->expenseService->getUserExpenseCategory((int) $params['category_id']);
     if (!$expenseCategory) {
       redirectTo('/settings');
     }
