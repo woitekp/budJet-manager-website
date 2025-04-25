@@ -49,7 +49,7 @@ $description = escape($expense['description'] ?? '');
     <input value="<?php echo $description ?>" name="description" type="text" class="form-control form-bottom-elem text-centered" placeholder="Description (optional)">
 
     <div class="buttons-grid-container">
-      <button name="cancel" class="cancel left btn btn-lg btn-primary btn-info" type="reset">Cancel</button>
+      <button name="reset" class="cancel left btn btn-lg btn-primary btn-info" type="reset">Reset</button>
       <button name="add" class="confirm right btn btn-lg btn-primary btn-info" type="submit">Edit expense</button>
     </div>
   </form>
