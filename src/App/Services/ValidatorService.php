@@ -9,6 +9,7 @@ use Framework\Rules\{
   DateFormatRule,
   EmailRule,
   LengthMaxRule,
+  LengthMinRule,
   MatchRule,
   NumericRule,
   RequiredRule,
@@ -26,6 +27,7 @@ class ValidatorService
     $this->validator->addRule('dateFormat', new DateFormatRule());
     $this->validator->addRule('email', new EmailRule());
     $this->validator->addRule('lengthMax', new LengthMaxRule());
+    $this->validator->addRule('lengthMin', new LengthMinRule());
     $this->validator->addRule('match', new MatchRule());
     $this->validator->addRule('numeric', new NumericRule());
     $this->validator->addRule('required', new RequiredRule());
@@ -36,7 +38,7 @@ class ValidatorService
     $this->validator->validate($formData, [
       'username' => ['required'],
       'email' => ['required', 'email'],
-      'password' => ['required'],
+      'password' => ['required', 'lengthMin:8'],
       'confirmPassword' => ['required', 'match:password']
     ]);
   }
