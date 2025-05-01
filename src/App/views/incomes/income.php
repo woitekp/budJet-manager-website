@@ -19,10 +19,8 @@ $rowStyle = ($rowStyle == "row_light") ? "row_dark" : "row_light";
   <th class="width-ge-180"><?php echo $category ?></th>
   <th class="width-ge-350"><?php echo $description ?></th>
   <th class="null">
-    <button class="confirm th-button btn width-ge-80">
-      <a href=<?php echo $incomeURI ?>>
-        Edit
-      </a>
+    <button class="confirm th-button btn width-ge-80" onclick=location.href="<?php echo $incomeURI ?>">
+      Edit
     </button>
   </th>
   <th class="null">
