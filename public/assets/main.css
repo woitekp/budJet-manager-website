@@ -333,5 +333,6 @@ tr.summary>th {
 
 footer {
   margin-top: auto;
+  padding-top: 10px;
   /* auto with proper body settings (see body section) makes footer staying at the bottom of the page and not overlapping the page */
 }
