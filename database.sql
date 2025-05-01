@@ -124,7 +124,8 @@ CREATE TABLE IF NOT EXISTS `payment_method_default` (
 INSERT IGNORE INTO `payment_method_default` (`id`, `name`) VALUES
 (1, 'Cash'),
 (2, 'Debit Card'),
-(3, 'Credit Card');
+(3, 'Credit Card'),
+(4, 'Another');
 
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
