@@ -34,6 +34,11 @@ header .logo:hover {
   text-decoration: none;
 }
 
+input.text-centered:focus::placeholder {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+
 .menu {
   margin-top: 20px;
   background-color: #f3eea6;
