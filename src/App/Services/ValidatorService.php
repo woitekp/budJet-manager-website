@@ -75,7 +75,7 @@ class ValidatorService
   public function validateCategory(array $formData)
   {
     $this->validator->validate($formData, [
-      'name' => ['required', 'lengthMax:50']
+      'name' => ['lengthMin:1', 'lengthMax:50']
     ]);
   }
 }

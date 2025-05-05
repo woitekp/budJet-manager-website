@@ -194,8 +194,6 @@ class IncomeService
       ]
     )->count();
 
-
-
     return ($nameCount > 0);
   }
 

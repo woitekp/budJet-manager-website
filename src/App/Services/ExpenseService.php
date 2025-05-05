@@ -88,29 +88,6 @@ class ExpenseService
     return $categories;
   }
 
-  public function getUserPaymentMethods(bool $enumerate = false)
-  {
-    $paymentMethods = array();
-    $query = $this->db->query(
-      "SELECT name, ROW_NUMBER() OVER(ORDER BY name) as ordinal_number
-       FROM user_payment_method WHERE user_id = :user ORDER BY name",
-      [
-        'user' => $_SESSION['user']
-      ]
-    );
-
-    while ($row = $query->find()) {
-      array_push($paymentMethods, $row);
-    }
-
-    if (! $enumerate)
-      $paymentMethods = array_map(function ($category) {
-        return $category['name'];
-      }, $paymentMethods);
-
-    return $paymentMethods;
-  }
-
   public function getUserExpense(int $expenseId)
   {
     return $this->db->query(
@@ -252,6 +229,19 @@ class ExpenseService
       WHERE expense.user_expense_category_id = :category_id AND expense.user_id = :user_id",
       [
         'category_id' => $categoryId,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+  }
+
+  public function countExpensesWithPaymentMethod(int $methodId)
+  {
+    return $this->db->query(
+      "SELECT COUNT(*)
+      FROM expense
+      WHERE expense.user_payment_method_id = :methodId AND expense.user_id = :user_id",
+      [
+        'methodId' => $methodId,
         'user_id' => $_SESSION['user']
       ]
     )->count();

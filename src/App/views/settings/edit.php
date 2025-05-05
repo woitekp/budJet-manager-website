@@ -26,7 +26,7 @@ echo $edited;
 
     <div class="buttons-grid-container">
       <button name="reset" class="cancel left btn btn-lg btn-primary btn-info" type="reset">Reset</button>
-      <button name="add" class="confirm right btn btn-lg btn-primary btn-info" type="submit">Edit category</button>
+      <button name="add" class="confirm right btn btn-lg btn-primary btn-info" type="submit">Edit</button>
     </div>
 
 

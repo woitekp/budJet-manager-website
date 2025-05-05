@@ -4,7 +4,7 @@ $incomesCategories = $incomesCategories ?? array();
 $expenseCategories = $expenseCategories ?? array();
 $paymentMethods = $paymentMethods ?? array();
 
-$error = escape($errors['category'][0] ?? $errors['name'][0] ?? '');
+$error = escape($errors['name'][0] ?? '');
 ?>
 
 <?php include $this->resolve("partials/_header.php"); ?>
@@ -37,6 +37,17 @@ $error = escape($errors['category'][0] ?? $errors['name'][0] ?? '');
     $records = $expenseCategories;
     $editPath = $mainPath . 'expenses/';
     $inputName = "expenseCategory";
+    include $this->resolve("settings/categories.php");
+    ?>
+  </div>
+
+  <div>
+    <?php
+    $rowStyle = 'row_light';
+    $title = 'Payment methods';
+    $records = $paymentMethods;
+    $editPath = $mainPath . 'payments/';
+    $inputName = "paymentMethod";
     include $this->resolve("settings/categories.php");
     ?>
   </div>

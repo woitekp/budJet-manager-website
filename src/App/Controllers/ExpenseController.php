@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\{Database, TemplateEngine};
-use App\Services\{ExpenseService, ValidatorService};
+use App\Services\{ExpenseService, PaymentService, ValidatorService};
 
 class ExpenseController
 {
@@ -13,6 +13,7 @@ class ExpenseController
     private Database $db,
     private TemplateEngine $view,
     private ExpenseService $expenseService,
+    private PaymentService $paymentService,
     private ValidatorService $validatorService
   ) {}
 
@@ -61,7 +62,7 @@ class ExpenseController
   public function addExpenseView()
   {
     $categories = $this->expenseService->getUserExpenseCategories();
-    $paymentMethods = $this->expenseService->getUserPaymentMethods();
+    $paymentMethods = $this->paymentService->getUserPaymentMethods();
 
     echo $this->view->render("expenses/create.php", [
       'categories' => $categories,
@@ -84,7 +85,7 @@ class ExpenseController
     }
 
     $categories = $this->expenseService->getUserExpenseCategories();
-    $paymentMethods = $this->expenseService->getUserPaymentMethods();
+    $paymentMethods = $this->paymentService->getUserPaymentMethods();
     echo $this->view->render('/expenses/edit.php', [
       'expense' => $expense,
       'categories' => $categories,

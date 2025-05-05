@@ -20,6 +20,12 @@ class LengthMinRule implements RuleInterface
 
   public function getMessage(array $data, string $field, array $params): string
   {
-    return "Minimum {$params[0]} characters required";
+
+    if ($params[0] > 1)
+      $nounForm = 'characters';
+    else
+      $nounForm = 'character';
+
+    return "Minimum {$params[0]} {$nounForm} required";
   }
 }

@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use Framework\{Database, TemplateEngine};
 use Framework\Exceptions\ValidationException;
-use App\Services\{IncomeService, ExpenseService, SettingsService, ValidatorService};
+use App\Services\{IncomeService, ExpenseService, PaymentService, ValidatorService};
 
 
 class SettingsController
@@ -16,6 +16,7 @@ class SettingsController
     private TemplateEngine $view,
     private IncomeService $incomeService,
     private ExpenseService $expenseService,
+    private PaymentService $paymentService,
     private ValidatorService $validatorService
   ) {}
 
@@ -23,9 +24,11 @@ class SettingsController
   {
     $incomesCategories = $this->incomeService->getUserIncomeCategories(enumerate: true);
     $expenseCategories = $this->expenseService->getUserExpenseCategories(enumerate: true);
+    $paymentMethods = $this->paymentService->getUserPaymentMethods(enumerate: true);
     echo $this->view->render('/settings/list.php', [
       'incomesCategories' => $incomesCategories,
-      'expenseCategories' => $expenseCategories
+      'expenseCategories' => $expenseCategories,
+      'paymentMethods' => $paymentMethods
     ]);
   }
 
@@ -115,43 +118,116 @@ class SettingsController
     redirectTo('/settings');
   }
 
+  public function editPaymentMethodView(array $params)
+  {
+    $paymentMethod = $this->paymentService->getUserPaymentMethod((int) $params['method_id']);
+
+    if (!$paymentMethod) {
+      redirectTo('/settings');
+    }
+
+    echo $this->view->render('/settings/edit.php', [
+      'name' => $paymentMethod['name']
+    ]);
+  }
+
+  public function editPaymentMethod(array $params)
+  {
+    $paymentMethod = $this->paymentService->getUserPaymentMethod((int) $params['method_id']);
+    if (!$paymentMethod) {
+      redirectTo('/settings');
+    }
+
+    $this->validatorService->validateCategory($_POST);
+
+    if ($this->paymentService->userPaymentMethodExists($_POST['name'])) {
+      throw new ValidationException(['name' => ['Payment method already exists']]);
+    }
+
+    $this->paymentService->updatePaymentMethod($_POST, $paymentMethod['id']);
+
+    redirectTo(
+      $_SERVER['HTTP_REFERER']
+    );
+  }
+
+  public function deletePaymentMethod(array $params)
+  {
+    if ($this->expenseService->countExpensesWithPaymentMethod((int) $params['method_id'])) {
+      throw new ValidationException(['name' => ['There are expenses with this payment method. Delete these expenses first']]);
+    }
+
+    $this->paymentService->deletePaymentMethod((int) $params['method_id']);
+    redirectTo('/settings');
+  }
+
   public function createCategory()
   {
 
-    if (isset($_POST['incomeCategory'])) {
-      $name = ucfirst(
-        strtolower($_POST['incomeCategory'])
-      );
-
-      $this->validatorService->validateCategory(
-        [
-          'name' => $name
-        ]
-      );
-
-      if ($this->incomeService->userIncomeCategoryExists($name)) {
-        throw new ValidationException(['category' => ['Category "' . $name . '" already exists']]);
-      }
-
-      $this->incomeService->createIncomeCategory($name);
-    } else if (isset($_POST['expenseCategory'])) {
-      $name = ucfirst(
-        strtolower($_POST['expenseCategory'])
-      );
-
-      $this->validatorService->validateCategory(
-        [
-          'name' => $name
-        ]
-      );
-
-      if ($this->expenseService->userExpenseCategoryExists($name)) {
-        throw new ValidationException(['category' => ['Category "' . $name . '" already exists']]);
-      }
-
-      $this->expenseService->createExpenseCategory($name);
-    }
+    if (isset($_POST['incomeCategory']))
+      $this->createIncomeCategory($_POST['incomeCategory']);
+    elseif (isset($_POST['expenseCategory']))
+      $this->createExpenseCategory($_POST['expenseCategory']);
+    elseif (isset($_POST['paymentMethod']))
+      $this->createPaymentMethod($_POST['paymentMethod']);
 
     redirectTo('/settings');
+  }
+
+  private function createIncomeCategory($name)
+  {
+    $name = ucwords(
+      strtolower($name)
+    );
+
+    $this->validatorService->validateCategory(
+      [
+        'name' => $name
+      ]
+    );
+
+    if ($this->incomeService->userIncomeCategoryExists($name)) {
+      throw new ValidationException(['name' => ['Category "' . $name . '" already exists']]);
+    }
+
+    $this->incomeService->createIncomeCategory($name);
+  }
+
+  private function createExpenseCategory($name)
+  {
+    $name = ucwords(
+      strtolower($name)
+    );
+
+    $this->validatorService->validateCategory(
+      [
+        'name' => $name
+      ]
+    );
+
+    if ($this->expenseService->userExpenseCategoryExists($name)) {
+      throw new ValidationException(['name' => ['Category "' . $name . '" already exists']]);
+    }
+
+    $this->expenseService->createExpenseCategory($name);
+  }
+
+  private function createPaymentMethod($name)
+  {
+    $name = ucwords(
+      strtolower($name)
+    );
+
+    $this->validatorService->validateCategory(
+      [
+        'name' => $name
+      ]
+    );
+
+    if ($this->paymentService->userPaymentMethodExists($name)) {
+      throw new ValidationException(['name' => ['Category "' . $name . '" already exists']]);
+    }
+
+    $this->paymentService->createPaymentMethod($name);
   }
 }
