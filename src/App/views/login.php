@@ -44,7 +44,7 @@ $email = escape($providedFormData['email'] ?? '');
 
     <hr>
     <div>
-      <h3 class="h4 mb-3 font-weight-normal">no account?</h3><a href="registration" class="login-registration-link"><u>Quick registration</u></a>
+      <h3 class="h4 mb-3 font-weight-normal">No account?</h3><a href="registration" class="login-registration-link"><u>Quick registration</u></a>
     </div>
 
   </form>
