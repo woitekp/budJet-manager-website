@@ -4,35 +4,42 @@ $incomesCategories = $incomesCategories ?? array();
 $expenseCategories = $expenseCategories ?? array();
 $paymentMethods = $paymentMethods ?? array();
 
-$error = escape($errors['name'][0] ?? '');
+$error = escape($errors['category'][0] ?? $errors['name'][0] ?? '');
 ?>
 
 <?php include $this->resolve("partials/_header.php"); ?>
 <?php include $this->resolve("partials/_menu.php"); ?>
 
 <main>
-  <?php if ($error) : ?>
-    <div class="form-error-message">
-      <?php echo $error; ?>
-    </div>
-  <?php endif; ?>
+  <div>
+    <?php if ($error) : ?>
+      <div class="form-error-message">
+        <?php echo $error; ?>
+      </div>
+    <?php endif; ?>
+  </div>
 
+  <div>
+    <?php
+    $rowStyle = 'row_light';
+    $title = 'Incomes categories';
+    $records = $incomesCategories;
+    $editPath = $mainPath . 'incomes/';
+    $inputName = "incomeCategory";
+    include $this->resolve("settings/categories.php");
+    ?>
+  </div>
 
-  <?php
-  $rowStyle = 'row_light';
-  $title = 'Incomes categories';
-  $records = $incomesCategories;
-  $editPath = $mainPath . 'incomes/';
-  include $this->resolve("settings/categories.php");
-  ?>
-
-  <?php
-  $rowStyle = 'row_light';
-  $title = 'Expense categories';
-  $records = $expenseCategories;
-  $editPath = $mainPath . 'expenses/';
-  include $this->resolve("settings/categories.php");
-  ?>
+  <div>
+    <?php
+    $rowStyle = 'row_light';
+    $title = 'Expense categories';
+    $records = $expenseCategories;
+    $editPath = $mainPath . 'expenses/';
+    $inputName = "expenseCategory";
+    include $this->resolve("settings/categories.php");
+    ?>
+  </div>
 
 </main>
 

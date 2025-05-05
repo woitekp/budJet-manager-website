@@ -114,4 +114,44 @@ class SettingsController
     $this->expenseService->deleteExpenseCategory((int) $params['category_id']);
     redirectTo('/settings');
   }
+
+  public function createCategory()
+  {
+
+    if (isset($_POST['incomeCategory'])) {
+      $name = ucfirst(
+        strtolower($_POST['incomeCategory'])
+      );
+
+      $this->validatorService->validateCategory(
+        [
+          'name' => $name
+        ]
+      );
+
+      if ($this->incomeService->userIncomeCategoryExists($name)) {
+        throw new ValidationException(['category' => ['Category "' . $name . '" already exists']]);
+      }
+
+      $this->incomeService->createIncomeCategory($name);
+    } else if (isset($_POST['expenseCategory'])) {
+      $name = ucfirst(
+        strtolower($_POST['expenseCategory'])
+      );
+
+      $this->validatorService->validateCategory(
+        [
+          'name' => $name
+        ]
+      );
+
+      if ($this->expenseService->userExpenseCategoryExists($name)) {
+        throw new ValidationException(['category' => ['Category "' . $name . '" already exists']]);
+      }
+
+      $this->expenseService->createExpenseCategory($name);
+    }
+
+    redirectTo('/settings');
+  }
 }

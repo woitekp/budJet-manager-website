@@ -110,6 +110,18 @@ class IncomeService
     );
   }
 
+  public function createIncomeCategory(string $name)
+  {
+    $this->db->query(
+      "INSERT INTO user_income_category (name, user_id)
+      VALUES (:name, :user_id)",
+      [
+        'name' => $name,
+        'user_id' => $_SESSION['user'],
+      ]
+    );
+  }
+
   public function getUserIncomeCategories(bool $enumerate = false)
   {
     $categories = array();
@@ -181,6 +193,8 @@ class IncomeService
         'user_id' => $_SESSION['user']
       ]
     )->count();
+
+
 
     return ($nameCount > 0);
   }

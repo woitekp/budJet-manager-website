@@ -49,6 +49,7 @@ function registerRoutes(App $app)
   $app->get('/balance', [BalanceController::class, 'balanceView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
 
   $app->get('/settings', [SettingsController::class, 'settingsView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->post('/settings', [SettingsController::class, 'createCategory'])->addRouteMiddleware(AuthRequiredMiddleware::class);
 
   $app->get('/settings/incomes/{category_id}', [SettingsController::class, 'editIncomeCategoryView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->post('/settings/incomes/{category_id}', [SettingsController::class, 'editIncomeCategory'])->addRouteMiddleware(AuthRequiredMiddleware::class);

@@ -179,6 +179,18 @@ class ExpenseService
     );
   }
 
+  public function createExpenseCategory(string $name)
+  {
+    $this->db->query(
+      "INSERT INTO user_expense_category (name, user_id)
+      VALUES (:name, :user_id)",
+      [
+        'name' => $name,
+        'user_id' => $_SESSION['user'],
+      ]
+    );
+  }
+
   public function getUserExpenseCategory(int $categoryId)
   {
     return $this->db->query(

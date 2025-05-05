@@ -12,6 +12,7 @@
   foreach ($records as $record) {
     include $this->resolve("/settings/category.php");
   }
+  include $this->resolve("/settings/create.php");
   ?>
 
 </table>

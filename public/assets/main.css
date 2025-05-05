@@ -67,7 +67,7 @@ header .logo:hover {
   margin: 0 auto;
 }
 
-.form .form-control:focus {
+.form-control:focus {
   z-index: 2;
   border: 1px solid #299c29;
   box-shadow: none;
