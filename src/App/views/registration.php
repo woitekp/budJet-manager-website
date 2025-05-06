@@ -79,7 +79,7 @@ $email = escape($providedFormData['email'] ?? '');
 
     <button class="confirm btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
 
-    <hr>
+    <hr class="background-color-green">
 
     <div>or<br><a href="login" class="login-registration-link"><u>Sign in</u></a></div>
 
