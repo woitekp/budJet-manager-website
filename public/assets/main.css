@@ -193,6 +193,30 @@ button>a:hover {
   margin: 10px;
 }
 
+div.total-sum {
+  margin: 0 auto;
+  font-size: 2rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 300px;
+}
+
+.background-color-green {
+  background-color: #299c29;
+}
+
+.color-green {
+  color: #299c29;
+}
+
+.color-red {
+  color: #d21414;
+}
+
+.color-black {
+  color: black;
+}
+
 
 table>caption {
   caption-side: top;

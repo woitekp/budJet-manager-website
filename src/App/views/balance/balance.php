@@ -61,6 +61,11 @@ $expenses = $expenses ?? array();
   </form>
 
   <?php
+  include $this->resolve("balance/total.php");
+  ?>
+
+
+  <?php
   $rowStyle = 'row_light';
   $title = 'Incomes';
   $records = $incomesByCategories;
