@@ -10,7 +10,7 @@ class LengthMaxRule implements RuleInterface
   public function validate(array $data, string $field, array $params): bool
   {
     if (empty($params[0])) {
-      throw new InvalidArgumentException('Maximum length not spicified');
+      throw new InvalidArgumentException('Maximum length not specified');
     }
 
     $length = (int) $params[0];
