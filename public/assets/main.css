@@ -359,6 +359,30 @@ tr.summary>th {
   font-size: 1.1rem;
 }
 
+.error-404-header {
+  font-size: 7rem;
+  font-weight: bold;
+  color: #71ca71;
+  padding: 0px;
+  margin: 0px;
+}
+
+.error-404-msg {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #71ca71;
+  padding: 0px;
+  margin-bottom: 50px;
+}
+
+.button-404 {
+  font-size: 2rem;
+  padding: 10px;
+  margin: 0px;
+}
+
+
+
 
 footer {
   margin-top: auto;

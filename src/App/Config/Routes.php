@@ -9,6 +9,7 @@ use App\Controllers\{
   AboutController,
   AuthController,
   BalanceController,
+  ErrorController,
   ExpenseController,
   HomeController,
   IncomeController,
@@ -62,4 +63,6 @@ function registerRoutes(App $app)
   $app->get('/settings/payments/{method_id}', [SettingsController::class, 'editPaymentMethodView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->post('/settings/payments/{method_id}', [SettingsController::class, 'editPaymentMethod'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->delete('/settings/payments/{method_id}', [SettingsController::class, 'deletePaymentMethod'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+
+  $app->setErrorHandler([ErrorController::class, 'notFound']);
 }

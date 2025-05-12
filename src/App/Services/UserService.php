@@ -61,9 +61,19 @@ class UserService
 
   public function logout()
   {
-    unset($_SESSION['user']);
+    session_destroy();
 
-    session_regenerate_id();
+    // destroy original cookie
+    $params = session_get_cookie_params();
+    setcookie(
+      'PHPSESSID',
+      '',
+      1,  // set expiration time in the past (alternatively: time() - SOME_NUMBER_IN_THE_PAST)
+      $params['path'],
+      $params['domain'],
+      $params['secure'],
+      $params['httponly']
+    );
   }
 
   private function insertDefaults()
