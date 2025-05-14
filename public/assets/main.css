@@ -27,7 +27,7 @@ header {
 
 header .logo {
   font-family: logoFont;
-  color: #71ca71;
+  color: #41be41;
 }
 
 header .logo:hover {
@@ -127,8 +127,8 @@ button {
 }
 
 button.confirm {
-  background-color: #71ca71 !important;
-  border: 2px solid #71ca71 !important;
+  background-color: #41be41 !important;
+  border: 2px solid #41be41 !important;
   margin-top: 10px;
 }
 
@@ -175,7 +175,7 @@ button>a:hover {
 
 
 .login-registration-link {
-  color: #71ca71;
+  color: #41be41;
   font-size: 1.4rem;
 }
 
@@ -362,7 +362,7 @@ tr.summary>th {
 .error-404-header {
   font-size: 7rem;
   font-weight: bold;
-  color: #71ca71;
+  color: #41be41;
   padding: 0px;
   margin: 0px;
 }
@@ -370,7 +370,7 @@ tr.summary>th {
 .error-404-msg {
   font-size: 2rem;
   font-weight: bold;
-  color: #71ca71;
+  color: #41be41;
   padding: 0px;
   margin-bottom: 50px;
 }
@@ -380,9 +380,6 @@ tr.summary>th {
   padding: 10px;
   margin: 0px;
 }
-
-
-
 
 footer {
   margin-top: auto;
