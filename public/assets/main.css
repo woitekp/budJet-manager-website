@@ -27,6 +27,7 @@ header {
 
 header .logo {
   font-family: logoFont;
+  font-size: 3rem;
   color: #41be41;
 }
 

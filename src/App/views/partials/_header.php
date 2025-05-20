@@ -15,6 +15,10 @@
   <header>
 
     <h1>
+      <img
+        src="/logo.svg"
+        height="90"
+        width="90" />
       <a href="/balance" class="logo">BudJet Manager</a>
     </h1>
 
