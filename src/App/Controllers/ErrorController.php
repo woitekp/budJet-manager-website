@@ -14,4 +14,9 @@ class ErrorController
   {
     echo $this->view->render("/not-found.php");
   }
+
+  public function error()
+  {
+    echo $this->view->render("/error.php");
+  }
 }

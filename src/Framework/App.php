@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Framework;
 
+use Exception;
+
 class App
 {
   private Router $router;
@@ -22,9 +24,13 @@ class App
 
   public function run()
   {
-    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $method = $_SERVER['REQUEST_METHOD'];
-    $this->router->dispatch($path, $method, $this->container);
+    try {
+      $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+      $method = $_SERVER['REQUEST_METHOD'];
+      $this->router->dispatch($path, $method, $this->container);
+    } catch (Exception $e) {
+      redirectTo('/error');
+    }
   }
 
   public function get(string $path, array $controller): App
