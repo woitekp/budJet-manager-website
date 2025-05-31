@@ -16,7 +16,7 @@ body {
   flex-direction: column;
   background-color: #dff4df;
   font-family: 'Open Sans', sans-serif;
-  font-size: 17px;
+  font-size: 1.5rem;
   text-align: center;
 }
 
@@ -40,11 +40,12 @@ input.text-centered:focus::placeholder {
 }
 
 
+
 .menu {
   margin-top: 20px;
   background-color: #f3eea6;
   padding: 12px;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 
 .menu>li {
@@ -108,7 +109,7 @@ input.text-centered:focus::placeholder {
 
 .form-error-message {
   color: #d21414;
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-top: 2px;
   margin-bottom: 5px;
 }
@@ -125,6 +126,7 @@ input.text-centered:focus::placeholder {
 button {
   color: white;
   box-shadow: none !important;
+  font-size: 1.3rem !important;
 }
 
 button.confirm {
@@ -177,7 +179,7 @@ button>a:hover {
 
 .login-registration-link {
   color: #41be41;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 .login-registration-link:hover {
@@ -196,7 +198,7 @@ button>a:hover {
 
 div.total-sum {
   margin: 0 auto;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
   width: 100%;
   max-width: 300px;
@@ -223,7 +225,7 @@ table>caption {
   caption-side: top;
   color: black;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: bold;
   min-width: 250px;
 }
@@ -268,6 +270,10 @@ button.th-button {
   min-width: 180px;
 }
 
+.width-ge-200 {
+  min-width: 200px;
+}
+
 .width-ge-350 {
   min-width: 350px;
 }
@@ -306,7 +312,7 @@ tr.summary>th {
 
 .pagination a {
   color: #41be41;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   padding: 10px 10px;
 }
 
