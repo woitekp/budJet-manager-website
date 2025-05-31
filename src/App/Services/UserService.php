@@ -43,7 +43,7 @@ class UserService
   public function passwordChange(array $formData)
   {
     $currentPassword =  $this->db->query(
-      "SELECT pass FROM user WHERE id = :id",
+      "SELECT password FROM user WHERE id = :id",
       [
         'id' => $_SESSION['user']
       ]
