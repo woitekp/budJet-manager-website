@@ -17,11 +17,7 @@ class Database
 
     $dsn = "{$driver}:{$config}";
 
-    try {
-      $this->connection = new PDO($dsn, $username, $password, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
-    } catch (PDOException $e) {
-      die("Unable to connect to database");
-    }
+    $this->connection = new PDO($dsn, $username, $password, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
   }
 
   public function query(string $query, array $params = []): Database
