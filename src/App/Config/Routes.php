@@ -64,6 +64,12 @@ function registerRoutes(App $app)
   $app->post('/settings/payments/{method_id}', [SettingsController::class, 'editPaymentMethod'])->addRouteMiddleware(AuthRequiredMiddleware::class);
   $app->delete('/settings/payments/{method_id}', [SettingsController::class, 'deletePaymentMethod'])->addRouteMiddleware(AuthRequiredMiddleware::class);
 
+  $app->get('/account', [AuthController::class, 'accountView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->get('/account/password', [AuthController::class, 'passwordChangeView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->post('account/password', [AuthController::class, 'passwordChange'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->get('/account/delete', [AuthController::class, 'deleteAccountView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+  $app->delete('/account/delete', [AuthController::class, 'deleteAccount'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+
   $app->get('/error', [ErrorController::class, 'error']);
 
   $app->setErrorHandler([ErrorController::class, 'notFound']);

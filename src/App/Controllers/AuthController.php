@@ -46,4 +46,33 @@ class AuthController
     $this->userService->logout();
     redirectTo('/login');
   }
+
+  public function accountView()
+  {
+    echo $this->view->render('/account/account.php');
+  }
+
+  public function passwordChangeView()
+  {
+    echo $this->view->render('/account/password.php');
+  }
+
+  public function passwordChange()
+  {
+    $this->validatorService->validatePassword($_POST);
+    $this->userService->passwordChange($_POST);
+    redirectTo('/account');
+  }
+
+  public function deleteAccountView()
+  {
+    echo $this->view->render('/account/delete.php');
+  }
+
+  public function deleteAccount()
+  {
+    $this->userService->logout();
+    $this->userService->deleteUser();
+    redirectTo('/login');
+  }
 }

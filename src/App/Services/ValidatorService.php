@@ -51,6 +51,14 @@ class ValidatorService
     ]);
   }
 
+  public function validatePassword(array $formData)
+  {
+    $this->validator->validate($formData, [
+      'password' => ['required', 'lengthMin:8'],
+      'confirmPassword' => ['required', 'match:password']
+    ]);
+  }
+
   public function validateExpense(array $formData)
   {
     $this->validator->validate($formData, [

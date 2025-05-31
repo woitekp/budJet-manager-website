@@ -374,6 +374,13 @@ tr.summary>th {
   margin: 0px;
 }
 
+.msg {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0px;
+  margin: 50px;
+}
+
 .error-404-msg {
   font-size: 2rem;
   font-weight: bold;

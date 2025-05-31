@@ -41,6 +41,12 @@ $path = parse_url($_SERVER['REQUEST_URI'])['path'];
   </li>
 
   <li>
+    <a href="/account" <?php if ($path == '/account') echo $selectedOption ?>>
+      Account
+    </a>
+  </li>
+
+  <li>
     <a href="/logout">
       Sign out
     </a>

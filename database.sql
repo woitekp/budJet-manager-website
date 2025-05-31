@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `user_expense_category` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   UNIQUE `unique_user_category` (`user_id`, `name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `user_payment_method` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   UNIQUE `unique_user_payment_method` (`user_id`, `name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `expense` (
   `date` date NOT NULL DEFAULT CURRENT_DATE(),
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   FOREIGN KEY (`user_expense_category_id`) REFERENCES `user_expense_category` (`id`),
   FOREIGN KEY (`user_payment_method_id`) REFERENCES `user_payment_method` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `user_income_category` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   UNIQUE `unique_user_category` (`user_id`, `name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `income` (
   `date` date NOT NULL DEFAULT CURRENT_DATE(),
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   FOREIGN KEY (`user_income_category_id`) REFERENCES `user_income_category` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 

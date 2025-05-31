@@ -40,6 +40,30 @@ class UserService
     $this->insertDefaults();
   }
 
+  public function passwordChange(array $formData)
+  {
+    $currentPassword =  $this->db->query(
+      "SELECT pass FROM user WHERE id = :id",
+      [
+        'id' => $_SESSION['user']
+      ]
+    )->find()['password'];
+
+    $passwordMatch = password_verify($formData['password'], $currentPassword);
+
+    if ($passwordMatch) {
+      throw new ValidationException(['password' => ['Password must be different from the previous one']]);
+    }
+
+    $this->db->query(
+      "UPDATE user SET password = :password WHERE id = :id",
+      [
+        'password' => password_hash($formData['password'], PASSWORD_BCRYPT, ['cost' => 12]),
+        'id' => $_SESSION['user']
+      ]
+    );
+  }
+
   public function login(array $formData)
   {
     $user =  $this->db->query(
@@ -97,6 +121,16 @@ class UserService
       "INSERT INTO user_payment_method (user_id, name) SELECT :user_id, name FROM payment_method_default",
       [
         'user_id' => $_SESSION['user']
+      ]
+    );
+  }
+
+  public function deleteUser()
+  {
+    $this->db->query(
+      "DELETE FROM user WHERE id = :id",
+      [
+        'id' => $_SESSION['user']
       ]
     );
   }
