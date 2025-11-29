@@ -3,24 +3,46 @@
   src: url(Boldenvandemo-K7dZZ.ttf);
 }
 
+/* colors */
+
+.background-color-green {
+  background-color: #299c29;
+}
+
+.color-green {
+  color: #299c29;
+}
+
+.color-red {
+  color: #d21414;
+}
+
+.color-black {
+  color: black;
+}
+
+/* end colors */
+
 
 html {
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 
 body {
-  /* flex with height: 100vh makes footer staying at the bottom of the page and not overlapping the page */
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: #dff4df;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.5rem;
   text-align: center;
+  margin: 0;
 }
 
 
+/* header */
 header {
   padding-top: 20px;
 }
@@ -29,18 +51,17 @@ header .logo {
   font-family: logoFont;
   font-size: 3rem;
   color: #41be41;
+  word-break: break-word;
 }
 
 header .logo:hover {
   text-decoration: none;
 }
 
-input.text-centered:focus::placeholder {
-  color: rgba(0, 0, 0, 0.25);
-}
+/* end header */
 
 
-
+/* menu */
 .menu {
   margin-top: 20px;
   background-color: #f3eea6;
@@ -56,6 +77,7 @@ input.text-centered:focus::placeholder {
 
 .menu a {
   color: #41be41;
+  text-decoration: none;
 }
 
 .menu a.selected-option {
@@ -67,11 +89,21 @@ input.text-centered:focus::placeholder {
   color: #299c29;
 }
 
+/* end menu */
+
+/* forms */
+
 .form {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.form-control {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .form-control:focus {
@@ -86,10 +118,7 @@ input.text-centered:focus::placeholder {
 }
 
 .form-middle-elem {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: 0;
 }
 
 .form-bottom-elem {
@@ -114,19 +143,27 @@ input.text-centered:focus::placeholder {
   margin-bottom: 5px;
 }
 
+input.text-centered:focus::placeholder {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+/* end forms */
+
+/* buttons */
 
 .buttons-grid-container {
   display: grid;
   grid-template-areas: "button1 button2";
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
+  gap: 5px;
 }
-
 
 button {
   color: white;
   box-shadow: none !important;
   font-size: 1.3rem !important;
+  cursor: pointer;
 }
 
 button.confirm {
@@ -154,17 +191,13 @@ button.cancel:hover {
 button.right {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  margin-left: 3px;
-  padding-left: 1px;
-  padding-right: 1px;
+  margin-left: 0;
 }
 
 button.left {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  margin-right: 3px;
-  padding-left: 1px;
-  padding-right: 1px;
+  margin-right: 0;
 }
 
 button>a {
@@ -176,50 +209,9 @@ button>a:hover {
   text-decoration: none;
 }
 
+/* end buttons */
 
-.login-registration-link {
-  color: #41be41;
-  font-size: 1.6rem;
-}
-
-.login-registration-link:hover {
-  color: #299c29;
-}
-
-
-#SelectPeriod {
-  width: 200px;
-  margin: auto;
-}
-
-.input-description {
-  margin: 10px;
-}
-
-div.total-sum {
-  margin: 0 auto;
-  font-size: 2.2rem;
-  font-weight: bold;
-  width: 100%;
-  max-width: 300px;
-}
-
-.background-color-green {
-  background-color: #299c29;
-}
-
-.color-green {
-  color: #299c29;
-}
-
-.color-red {
-  color: #d21414;
-}
-
-.color-black {
-  color: black;
-}
-
+/* table */
 
 table>caption {
   caption-side: top;
@@ -234,6 +226,8 @@ table {
   clear: both;
   margin: auto;
   margin-top: 20px;
+  border-collapse: collapse;
+  max-width: 100%;
 }
 
 th {
@@ -248,12 +242,39 @@ th.null {
   background-color: #dff4df;
 }
 
-
 button.th-button {
   padding: 0px;
   margin: 0px;
 }
 
+th.number {
+  font-weight: bold;
+}
+
+tr.summary>th {
+  font-weight: bold;
+}
+
+.text-centered {
+  text-align: center;
+}
+
+.column_names>* {
+  font-weight: bold;
+}
+
+.row_dark {
+  background-color: #f3eea6;
+}
+
+.row_light {
+  background-color: #FFF8D6;
+}
+
+/* end table */
+
+
+/* widths */
 .width-ge-50 {
   min-width: 50px;
 }
@@ -278,42 +299,22 @@ button.th-button {
   min-width: 350px;
 }
 
-th.number {
-  font-weight: bold;
-}
+/* end widths */
 
-tr.summary>th {
-  font-weight: bold;
-}
-
-.text-centered {
-  text-align: center;
-}
-
-.column_names>* {
-  font-weight: bold;
-}
-
-
-.row_dark {
-  background-color: #f3eea6;
-}
-
-.row_light {
-  background-color: #FFF8D6;
-}
-
+/* pagination */
 
 .pagination {
   display: inline-block;
   color: gray;
   margin-top: 20px;
+  max-width: 100%;
 }
 
 .pagination a {
   color: #41be41;
   font-size: 1.8rem;
   padding: 10px 10px;
+  display: inline-block;
 }
 
 .pagination .current_page {
@@ -321,6 +322,9 @@ tr.summary>th {
   font-weight: bold;
 }
 
+/* end pagination */
+
+/* chart */
 
 .chart {
   display: flex;
@@ -366,35 +370,39 @@ tr.summary>th {
   font-size: 1.1rem;
 }
 
+/* end chart */
+
+/* messages */
 .error-404-header {
   font-size: 7rem;
   font-weight: bold;
   color: #41be41;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
 }
 
 .msg {
   font-size: 2rem;
   font-weight: bold;
-  padding: 0px;
+  padding: 0;
   margin: 50px;
 }
 
-.error-404-msg {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #41be41;
-  padding: 0px;
-  margin-bottom: 50px;
-}
-
+.error-404-msg,
 .error-msg {
   font-size: 2rem;
   font-weight: bold;
-  color: #de3e51;
-  padding: 0px;
+  padding: 0;
   margin-bottom: 50px;
+}
+
+.error-404-msg {
+  color: #41be41;
+}
+
+.error-msg {
+  color: #de3e51;
 }
 
 .button-404 {
@@ -403,8 +411,36 @@ tr.summary>th {
   margin: 0px;
 }
 
+/* end messages */
+
+.login-registration-link {
+  color: #41be41;
+  font-size: 1.6rem;
+}
+
+.login-registration-link:hover {
+  color: #299c29;
+}
+
+#SelectPeriod {
+  width: 200px;
+  margin: auto;
+  max-width: 100%;
+}
+
+.input-description {
+  margin: 10px;
+}
+
+div.total-sum {
+  margin: 0 auto;
+  font-size: 2.2rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 300px;
+}
+
 footer {
   margin-top: auto;
   padding-top: 10px;
-  /* auto with proper body settings (see body section) makes footer staying at the bottom of the page and not overlapping the page */
 }
