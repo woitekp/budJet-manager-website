@@ -15,20 +15,22 @@ $rowStyle = 'row_light'
 
 <main>
   <?php include $this->resolve("partials/_search.php"); ?>
-  <table>
-    <tr class="column_names <?php echo $rowStyle ?>">
-      <th>#</th>
-      <th>Date</th>
-      <th>Amount</th>
-      <th>Category</th>
-      <th>Description</th>
-    </tr>
-    <?php
-    foreach ($incomes as $income) {
-      include $this->resolve("incomes/income.php");
-    }
-    ?>
-  </table>
+  <div class="table-container">
+    <table>
+      <tr class="column_names <?php echo $rowStyle ?>">
+        <th>#</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Description</th>
+      </tr>
+      <?php
+      foreach ($incomes as $income) {
+        include $this->resolve("incomes/income.php");
+      }
+      ?>
+    </table>
+  </div>
 
   <div class="pagination">
     <a <?php echo $previousPageHref; ?>>

@@ -23,12 +23,10 @@
 
 /* end colors */
 
-
 html {
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
-
 
 body {
   min-height: 100vh;
@@ -41,8 +39,8 @@ body {
   margin: 0;
 }
 
-
 /* header */
+
 header {
   padding-top: 20px;
 }
@@ -60,8 +58,8 @@ header .logo:hover {
 
 /* end header */
 
-
 /* menu */
+
 .menu {
   margin-top: 20px;
   background-color: #f3eea6;
@@ -219,7 +217,6 @@ table>caption {
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
-  min-width: 250px;
 }
 
 table {
@@ -273,8 +270,8 @@ tr.summary>th {
 
 /* end table */
 
-
 /* widths */
+
 .width-ge-50 {
   min-width: 50px;
 }
@@ -333,7 +330,7 @@ tr.summary>th {
 }
 
 .pie_chart {
-  height: 450px;
+  aspect-ratio: 1 / 1;
   width: 450px;
   border-radius: 50%;
   margin-left: auto;
@@ -343,7 +340,8 @@ tr.summary>th {
   height: 450px;
   width: 200px;
   margin-left: 10px;
-  margin-right: 0px;
+  margin-right: 0;
+
 }
 
 .legend_last_column {
@@ -443,4 +441,73 @@ div.total-sum {
 footer {
   margin-top: auto;
   padding-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  header .logo {
+    font-size: 2rem;
+  }
+
+  .menu {
+    padding: 5px;
+    font-size: 1.5rem;
+  }
+
+  .menu>li {
+    display: block;
+    padding: 5px;
+  }
+
+  .width-ge-50,
+  .width-ge-80,
+  .width-ge-120,
+  .width-ge-180,
+  .width-ge-200,
+  .width-ge-350 {
+    min-width: auto;
+  }
+
+  .form {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  table>caption {
+    font-size: 1.2rem;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th {
+    padding: 5px;
+    font-size: 1rem;
+  }
+
+  .chart {
+    flex-direction: column;
+  }
+
+  .pie_chart {
+    width: 50%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .legend {
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0 !important;
+  }
+
+  div.total-sum {
+    font-size: 1.5rem;
+  }
+
+  .error-404-header {
+    font-size: 3.5rem;
+  }
 }
